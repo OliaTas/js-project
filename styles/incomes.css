@@ -1,0 +1,50 @@
+.main-total {
+    margin-top: 530px;
+}
+
+.card {
+    max-width: 352px;
+    height: 121px;
+    border-color: #CED4DA;
+}
+
+.card-body {
+    padding: 20px 20px 20px 20px;
+}
+
+.card-text {
+    font-size: 28px;
+    color: #290661;
+    margin-bottom: 10px;
+}
+
+.btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.btn-group>:not(.btn-check)+.btn {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.btn-edit {
+    margin-right: 10px;
+    width: 134px;
+    font-size: 14px;
+    height: 38px;
+}
+
+.btn-delete  {
+    width: 88px;
+    font-size: 14px;
+    height: 38px;
+}
+
+.card-add {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
