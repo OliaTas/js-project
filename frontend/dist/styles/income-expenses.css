@@ -1,0 +1,49 @@
+.btn-iex {
+    width: 133px;
+    font-size: 13px;
+    padding: 11px 16px;
+    margin-right: 10px;
+}
+
+.income-expenses-nav {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.table-wrap {
+    text-align: center;
+    display: inline-block;
+    background-color: #fff;
+    padding: 2rem 2rem;
+    color: #000;
+}
+
+.table  {
+    border-top: 1px solid #DEE2E6;
+    border-bottom: 1px solid #DEE2E6;
+    width: 1101px;
+}
+.table th:not(tbody tr th) {
+    color: #052C65;
+    font-weight: bold;
+    line-height: 18px;
+    font-size: 16px;
+    width: 40px;
+}
+
+.table tbody tr th{
+    line-height: 23px;
+    font-size: 16px;color: black;
+}
+
+.table thead tr th{
+    padding: 16px 0 15px 15px;
+}
+
+
+.table tbody tr th{
+    padding: 12px 0 14px 61px;
+}
+
+
+
