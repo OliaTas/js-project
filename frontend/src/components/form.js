@@ -11,7 +11,7 @@ export class Form {
         const accessToken = localStorage.getItem(Auth.accessTokenKey);
 
         if (accessToken) {
-            location.href = "#/main";
+            location.href = "#/";
             return;
         }
 
@@ -30,6 +30,7 @@ export class Form {
                 regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
                 valid: false,
             },
+
         ];
 
         if (this.page === 'signup') {
@@ -66,6 +67,7 @@ export class Form {
     }
 
     validateField(field, element) {
+        console.log(field.name.password)
         if (!element.value || !element.value.match(field.regex)) {
             element.parentNode.style.borderColor = 'red';
             field.valid = false;

@@ -72,7 +72,7 @@
         processForm() {
             if(this.validateForm()) {
 
-                location.href = '#/main';
+                location.href = '#/index.html';
             }
         }
     };

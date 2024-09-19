@@ -6,7 +6,7 @@ export class Router {
     constructor() {
         this.contentElement = document.getElementById('content');
         this.stylesElement = document.getElementById('styles');
-        this.titleElement = document.getElementById('page-title');
+        this.titleElement = document.getElementById('title');
         this.profileElement = document.getElementById('profile');
         this.profileFullNameElement = document.getElementById('profile-full-name');
 
@@ -33,7 +33,35 @@ export class Router {
                 route: '#/main',
                 title: 'Главная',
                 template: 'templates/main.html',
-                styles: 'styles/main.css, styles/bootstrap.min.css',
+                styles: 'styles/main.css',
+                script: 'src/utils/bootstrap.min.js',
+                load: () => {
+
+                }
+            },
+            {
+                route: '#/income-expenses',
+                title: 'Доходы и расходы',
+                template: 'templates/income-expenses.html',
+                styles: 'styles/income-expenses.css',
+                load: () => {
+
+                }
+            },
+            {
+                route: '#/create-income-expenses',
+                title: 'Создание дохода/расхода',
+                template: 'templates/create-income-expenses.html',
+                styles: 'styles/income-expenses.css',
+                load: () => {
+
+                }
+            },
+            {
+                route: '#/edit-income-expenses',
+                title: 'Редактирование дохода/расхода',
+                template: 'templates/edit-income-expenses.html',
+                styles: 'styles/income-expenses.css',
                 load: () => {
 
                 }
@@ -92,33 +120,7 @@ export class Router {
 
                 }
             },
-            {
-                route: '#/income-expenses',
-                title: 'Доходы и расходы',
-                template: 'templates/income-expenses.html',
-                styles: 'styles/main.css, styles/income-expenses.css',
-                load: () => {
 
-                }
-            },
-            {
-                route: '#/create-income-expenses',
-                title: 'Создание дохода/расхода',
-                template: 'templates/create-income-expenses.html',
-                styles: 'styles/main.css, styles/income-expenses.css',
-                load: () => {
-
-                }
-            },
-            {
-                route: '#/edit-income-expenses',
-                title: 'Редактирование дохода/расхода',
-                template: 'templates/edit-income-expenses.html',
-                styles: 'styles/main.css, styles/income-expenses.css',
-                load: () => {
-
-                }
-            },
 
         ]
     }
@@ -145,14 +147,14 @@ export class Router {
         this.stylesElement.setAttribute('href', newRoute.styles);
         this.titleElement.innerText = newRoute.title;
 
-        const userInfo = Auth.getUserInfo();
-        const accessToken = localStorage.getItem(Auth.accessTokenKey);
-        if (userInfo && accessToken) {
-            this.profileElement.style.display = 'flex';
-            this.profileFullNameElement.innerText = userInfo.fullName;
-        } else {
-            this.profileElement.style.display = 'none';
-        }
+        // const userInfo = Auth.getUserInfo();
+        // const accessToken = localStorage.getItem(Auth.accessTokenKey);
+        // if (userInfo && accessToken) {
+        //     this.profileElement.style.display = 'flex';
+        //     this.profileFullNameElement.innerText = userInfo.fullName;
+        // } else {
+        //     this.profileElement.style.display = 'none';
+        // }
 
         newRoute.load();
 
