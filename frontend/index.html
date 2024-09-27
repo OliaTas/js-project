@@ -13,12 +13,10 @@
 <body>
 <section class="layout">
     <aside class="sidebar flex-column flex-shrink-0  main">
-        <nav class="nav-sidebar">
             <a href="#" class="main-logo">
                 <img src="../images/main-logo.png" alt="Main logo">
             </a>
-            <hr>
-            <ul class="nav nav-pills flex-column navigation">
+            <ul class="nav nav-pills flex-column mb-auto navigation">
                 <li class="nav-item navigation-item">
                     <a href="#/main" class="nav-link d-flex align-items-center active" aria-current="page">
                         <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,102 +49,110 @@
                         Доходы & Расходы
                     </a>
                 </li>
-                <li class="dropdown nav-item navigation-item">
-                    <a class="btn-toggle category nav-link d-flex align-items-center justify-content-between collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                <li class="dropdown dropdown2 nav-item navigation-item">
+                    <a class="btn-toggle category nav-link d-flex align-items-center justify-content-between collapsed"
+                       data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
                         Категории
                     </a>
-                    <div class="collapse" id="home-collapse" >
+                    <div class="collapse" id="home-collapse">
                         <ul class="btn-toggle-nav" aria-expanded="false">
-                            <li><a href="#/incomes" class="nav-link d-flex btn-primary align-items-center ">Доходы</a></li>
-                            <li><a href="#/expenses" class="nav-link d-flex btn-primary align-items-center ">Расходы</a></li>
+                            <li><a href="#/incomes" class="nav-link d-flex btn-primary align-items-center ">Доходы</a>
+                            </li>
+                            <li><a href="#/expenses" class="nav-link d-flex btn-primary align-items-center ">Расходы</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
             </ul>
+<!--            <hr class="hr">-->
+        <p class="sidebar-main-total"> Баланс:<span>500$</span></p>
+        <div class="dropdown">
 
-            <p class="sidebar-main-total"> Баланс:<span>500$</span></p>
-            <hr>
-            <section class="sidebar-main-user" id="profile">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="18" cy="18" r="18" fill="#D9D9D9"/>
-                    <path d="M18 18C19.0609 18 20.0783 17.5786 20.8284 16.8284C21.5786 16.0783 22 15.0609 22 14C22 12.9391 21.5786 11.9217 20.8284 11.1716C20.0783 10.4214 19.0609 10 18 10C16.9391 10 15.9217 10.4214 15.1716 11.1716C14.4214 11.9217 14 12.9391 14 14C14 15.0609 14.4214 16.0783 15.1716 16.8284C15.9217 17.5786 16.9391 18 18 18ZM20.6667 14C20.6667 14.7072 20.3857 15.3855 19.8856 15.8856C19.3855 16.3857 18.7072 16.6667 18 16.6667C17.2928 16.6667 16.6145 16.3857 16.1144 15.8856C15.6143 15.3855 15.3333 14.7072 15.3333 14C15.3333 13.2928 15.6143 12.6145 16.1144 12.1144C16.6145 11.6143 17.2928 11.3333 18 11.3333C18.7072 11.3333 19.3855 11.6143 19.8856 12.1144C20.3857 12.6145 20.6667 13.2928 20.6667 14ZM26 24.6667C26 26 24.6667 26 24.6667 26H11.3333C11.3333 26 10 26 10 24.6667C10 23.3333 11.3333 19.3333 18 19.3333C24.6667 19.3333 26 23.3333 26 24.6667ZM24.6667 24.6613C24.6653 24.3333 24.4613 23.3467 23.5573 22.4427C22.688 21.5733 21.052 20.6667 18 20.6667C14.9467 20.6667 13.312 21.5733 12.4427 22.4427C11.5387 23.3467 11.336 24.3333 11.3333 24.6613H24.6667Z"
-                          fill="#6C757D"/>
-                </svg>
-                <a href="#" class="d-flex align-items-center text-decoration-none " id="profile-full-name" data-bs-toggle="dropdown"
-                   aria-expanded="false">
-                    RomanChernov
-                </a>
-            </section>
-        </nav>
+                <div class="dropdown sidebar-main-user" id="profile">
+                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none"
+                       id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="true">
+                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            -->
+                            <circle cx="18" cy="18" r="18" fill="#D9D9D9"/>
+                            <path d="M18 18C19.0609 18 20.0783 17.5786 20.8284 16.8284C21.5786 16.0783 22 15.0609 22 14C22 12.9391 21.5786 11.9217 20.8284 11.1716C20.0783 10.4214 19.0609 10 18 10C16.9391 10 15.9217 10.4214 15.1716 11.1716C14.4214 11.9217 14 12.9391 14 14C14 15.0609 14.4214 16.0783 15.1716 16.8284C15.9217 17.5786 16.9391 18 18 18ZM20.6667 14C20.6667 14.7072 20.3857 15.3855 19.8856 15.8856C19.3855 16.3857 18.7072 16.6667 18 16.6667C17.2928 16.6667 16.6145 16.3857 16.1144 15.8856C15.6143 15.3855 15.3333 14.7072 15.3333 14C15.3333 13.2928 15.6143 12.6145 16.1144 12.1144C16.6145 11.6143 17.2928 11.3333 18 11.3333C18.7072 11.3333 19.3855 11.6143 19.8856 12.1144C20.3857 12.6145 20.6667 13.2928 20.6667 14ZM26 24.6667C26 26 24.6667 26 24.6667 26H11.3333C11.3333 26 10 26 10 24.6667C10 23.3333 11.3333 19.3333 18 19.3333C24.6667 19.3333 26 23.3333 26 24.6667ZM24.6667 24.6613C24.6653 24.3333 24.4613 23.3467 23.5573 22.4427C22.688 21.5733 21.052 20.6667 18 20.6667C14.9467 20.6667 13.312 21.5733 12.4427 22.4427C11.5387 23.3467 11.336 24.3333 11.3333 24.6613H24.6667Z"
+                                  fill="#6C757D"/>
+                        </svg>
+                        <strong id="profile-full-name">RomanChernov</strong>
+                    </a>
+                    <ul class="dropdown-menu text-small " aria-labelledby="dropdownUser2" >
+                        <li><a class="dropdown-item" id="dropdown-item" href="/#/logout">Выйти</a></li>
+                    </ul>
+                </div>
+            </div>
     </aside>
     <main class="main-header">
-<!--        <header class="header">-->
-<!--            <section class="header-logo">-->
-<!--                <img src="/images/main-logo.png" alt="Logo">-->
-<!--            </section>-->
-<!--            <nav class="menu" id="menu">-->
-<!--                <div class="close">-->
-<!--                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"-->
-<!--                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 492 492"-->
-<!--                         style="enable-background:new 0 0 492 492;" xml:space="preserve">-->
-<!--                          <g>-->
-<!--        	              <g>-->
-<!--        		        <path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872-->
-<!--        			c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872-->
-<!--        			c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052-->
-<!--        			L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116-->
-<!--        			c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952-->
-<!--        			c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116-->
-<!--        			c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"-->
-<!--                              fill="blue"></path>-->
-<!--        	             </g>-->
-<!--                          </g>-->
-<!--                        </svg>-->
-<!--                </div>-->
-<!--                <ul>-->
-<!--                    <li>-->
-<!--                        <a href="#">Главная</a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="#">Доходы&Расходы</a>-->
-<!--                    </li>-->
-<!--                    <li class="dropdown nav-item navigation-item">-->
-<!--                        <a class="btn-toggle category nav-link d-flex align-items-center justify-content-between collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">-->
-<!--                            Категории-->
-<!--                        </a>-->
-<!--                        <div class="collapse" id="home-collapse" >-->
-<!--                            <ul class="btn-toggle-nav" aria-expanded="false">-->
-<!--                                <li><a href="#" class="nav-link d-flex btn-primary align-items-center ">Доходы</a></li>-->
-<!--                                <li><a href="#" class="nav-link d-flex btn-primary align-items-center ">Расходы</a></li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="#">-->
-<!--                            Баланс:<span>500$</span>-->
-<!--                        </a>-->
+        <!--        <header class="header">-->
+        <!--            <section class="header-logo">-->
+        <!--                <img src="/images/main-logo.png" alt="Logo">-->
+        <!--            </section>-->
+        <!--            <nav class="menu" id="menu">-->
+        <!--                <div class="close">-->
+        <!--                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"-->
+        <!--                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 492 492"-->
+        <!--                         style="enable-background:new 0 0 492 492;" xml:space="preserve">-->
+        <!--                          <g>-->
+        <!--        	              <g>-->
+        <!--        		        <path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872-->
+        <!--        			c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872-->
+        <!--        			c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052-->
+        <!--        			L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116-->
+        <!--        			c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952-->
+        <!--        			c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116-->
+        <!--        			c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"-->
+        <!--                              fill="blue"></path>-->
+        <!--        	             </g>-->
+        <!--                          </g>-->
+        <!--                        </svg>-->
+        <!--                </div>-->
+        <!--                <ul>-->
+        <!--                    <li>-->
+        <!--                        <a href="#">Главная</a>-->
+        <!--                    </li>-->
+        <!--                    <li>-->
+        <!--                        <a href="#">Доходы&Расходы</a>-->
+        <!--                    </li>-->
+        <!--                    <li class="dropdown nav-item navigation-item">-->
+        <!--                        <a class="btn-toggle category nav-link d-flex align-items-center justify-content-between collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">-->
+        <!--                            Категории-->
+        <!--                        </a>-->
+        <!--                        <div class="collapse" id="home-collapse" >-->
+        <!--                            <ul class="btn-toggle-nav" aria-expanded="false">-->
+        <!--                                <li><a href="#" class="nav-link d-flex btn-primary align-items-center ">Доходы</a></li>-->
+        <!--                                <li><a href="#" class="nav-link d-flex btn-primary align-items-center ">Расходы</a></li>-->
+        <!--                            </ul>-->
+        <!--                        </div>-->
+        <!--                    </li>-->
+        <!--                    <li>-->
+        <!--                        <a href="#">-->
+        <!--                            Баланс:<span>500$</span>-->
+        <!--                        </a>-->
 
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a href="#" class="d-flex align-items-center text-decoration-none " data-bs-toggle="dropdown"-->
-<!--                           aria-expanded="false">-->
-<!--                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                                <circle cx="18" cy="18" r="18" fill="#D9D9D9"/>-->
-<!--                                <path d="M18 18C19.0609 18 20.0783 17.5786 20.8284 16.8284C21.5786 16.0783 22 15.0609 22 14C22 12.9391 21.5786 11.9217 20.8284 11.1716C20.0783 10.4214 19.0609 10 18 10C16.9391 10 15.9217 10.4214 15.1716 11.1716C14.4214 11.9217 14 12.9391 14 14C14 15.0609 14.4214 16.0783 15.1716 16.8284C15.9217 17.5786 16.9391 18 18 18ZM20.6667 14C20.6667 14.7072 20.3857 15.3855 19.8856 15.8856C19.3855 16.3857 18.7072 16.6667 18 16.6667C17.2928 16.6667 16.6145 16.3857 16.1144 15.8856C15.6143 15.3855 15.3333 14.7072 15.3333 14C15.3333 13.2928 15.6143 12.6145 16.1144 12.1144C16.6145 11.6143 17.2928 11.3333 18 11.3333C18.7072 11.3333 19.3855 11.6143 19.8856 12.1144C20.3857 12.6145 20.6667 13.2928 20.6667 14ZM26 24.6667C26 26 24.6667 26 24.6667 26H11.3333C11.3333 26 10 26 10 24.6667C10 23.3333 11.3333 19.3333 18 19.3333C24.6667 19.3333 26 23.3333 26 24.6667ZM24.6667 24.6613C24.6653 24.3333 24.4613 23.3467 23.5573 22.4427C22.688 21.5733 21.052 20.6667 18 20.6667C14.9467 20.6667 13.312 21.5733 12.4427 22.4427C11.5387 23.3467 11.336 24.3333 11.3333 24.6613H24.6667Z"-->
-<!--                                      fill="#6C757D"/>-->
-<!--                            </svg>-->
-<!--                            RomanChernov-->
-<!--                        </a>-->
-<!--                    </li>-->
-<!--                </ul>-->
+        <!--                    </li>-->
+        <!--                    <li>-->
+        <!--                        <a href="#" class="d-flex align-items-center text-decoration-none " data-bs-toggle="dropdown"-->
+        <!--                           aria-expanded="false">-->
+        <!--                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+        <!--                                <circle cx="18" cy="18" r="18" fill="#D9D9D9"/>-->
+        <!--                                <path d="M18 18C19.0609 18 20.0783 17.5786 20.8284 16.8284C21.5786 16.0783 22 15.0609 22 14C22 12.9391 21.5786 11.9217 20.8284 11.1716C20.0783 10.4214 19.0609 10 18 10C16.9391 10 15.9217 10.4214 15.1716 11.1716C14.4214 11.9217 14 12.9391 14 14C14 15.0609 14.4214 16.0783 15.1716 16.8284C15.9217 17.5786 16.9391 18 18 18ZM20.6667 14C20.6667 14.7072 20.3857 15.3855 19.8856 15.8856C19.3855 16.3857 18.7072 16.6667 18 16.6667C17.2928 16.6667 16.6145 16.3857 16.1144 15.8856C15.6143 15.3855 15.3333 14.7072 15.3333 14C15.3333 13.2928 15.6143 12.6145 16.1144 12.1144C16.6145 11.6143 17.2928 11.3333 18 11.3333C18.7072 11.3333 19.3855 11.6143 19.8856 12.1144C20.3857 12.6145 20.6667 13.2928 20.6667 14ZM26 24.6667C26 26 24.6667 26 24.6667 26H11.3333C11.3333 26 10 26 10 24.6667C10 23.3333 11.3333 19.3333 18 19.3333C24.6667 19.3333 26 23.3333 26 24.6667ZM24.6667 24.6613C24.6653 24.3333 24.4613 23.3467 23.5573 22.4427C22.688 21.5733 21.052 20.6667 18 20.6667C14.9467 20.6667 13.312 21.5733 12.4427 22.4427C11.5387 23.3467 11.336 24.3333 11.3333 24.6613H24.6667Z"-->
+        <!--                                      fill="#6C757D"/>-->
+        <!--                            </svg>-->
+        <!--                            RomanChernov-->
+        <!--                        </a>-->
+        <!--                    </li>-->
+        <!--                </ul>-->
 
-<!--            </nav>-->
-<!--            <section class="burger" id="burger">-->
-<!--                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 50 50">-->
-<!--                    <path d="M 0 9 L 0 11 L 50 11 L 50 9 Z M 0 24 L 0 26 L 50 26 L 50 24 Z M 0 39 L 0 41 L 50 41 L 50 39 Z"></path>-->
-<!--                </svg>-->
-<!--            </section>-->
-<!--        </header>-->
+        <!--            </nav>-->
+        <!--            <section class="burger" id="burger">-->
+        <!--                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 50 50">-->
+        <!--                    <path d="M 0 9 L 0 11 L 50 11 L 50 9 Z M 0 24 L 0 26 L 50 26 L 50 24 Z M 0 39 L 0 41 L 50 41 L 50 39 Z"></path>-->
+        <!--                </svg>-->
+        <!--            </section>-->
+        <!--        </header>-->
         <section id="content"></section>
 
 
@@ -154,8 +160,10 @@
 </section>
 
 
-<script src="src/utils/adaptive-menu.js"></script>
-<script src="src/utils/bootstrap.min.js"></script>
+<!--<script src="src/utils/adaptive-menu.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 
 </body>

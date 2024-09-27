@@ -14,7 +14,7 @@ export class Router {
             {
                 route: '#/signup',
                 title: 'Регистрация',
-                template: 'signup.html',
+                template: 'templates/signup.html',
                 styles: 'styles/form.css',
                 load: () => {
                     new Form('signup');
@@ -23,7 +23,7 @@ export class Router {
             {
                 route: '#/login',
                 title: 'Вход в систему',
-                template: 'login.html',
+                template: 'templates/login.html',
                 styles: 'styles/form.css',
                 load: () => {
                     new Form('login');
@@ -129,7 +129,7 @@ export class Router {
         const urlRoute = window.location.hash.split('?')[0];
         if(urlRoute === '#/logout') {
             await Auth.logout();
-            window.location.href = '#/main';
+            window.location.href = '#/login';
             return;
         }
 
@@ -147,14 +147,11 @@ export class Router {
         this.stylesElement.setAttribute('href', newRoute.styles);
         this.titleElement.innerText = newRoute.title;
 
-        // const userInfo = Auth.getUserInfo();
-        // const accessToken = localStorage.getItem(Auth.accessTokenKey);
-        // if (userInfo && accessToken) {
-        //     this.profileElement.style.display = 'flex';
-        //     this.profileFullNameElement.innerText = userInfo.fullName;
-        // } else {
-        //     this.profileElement.style.display = 'none';
-        // }
+        const userInfo = Auth.getUserInfo();
+        const accessToken = localStorage.getItem(Auth.accessTokenKey);
+        if (userInfo && accessToken) {
+            this.profileFullNameElement.innerText = userInfo.fullName;
+        }
 
         newRoute.load();
 
