@@ -77,17 +77,17 @@ export class Auth {
         return null;
     }
 
-    static setUserEmail(email) {
-        localStorage.setItem(this.userEmailKey, JSON.stringify(email));
-    }
-
-    static getUserEmail() {
-        const userEmail = localStorage.getItem(this.userEmailKey);
-        if(userEmail) {
-            return JSON.parse(userEmail);
-        }
-        return null;
-    }
+    // static setUserEmail(email) {
+    //     localStorage.setItem(this.userEmailKey, JSON.stringify(email));
+    // }
+    //
+    // static getUserEmail() {
+    //     const userEmail = localStorage.getItem(this.userEmailKey);
+    //     if(userEmail) {
+    //         return JSON.parse(userEmail);
+    //     }
+    //     return null;
+    // }
 
 
 }

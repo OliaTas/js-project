@@ -1,6 +1,7 @@
 import {Incomes} from "./components/incomes.js";
 import {Form} from "./components/form.js";
 import {Auth} from "./services/auth.js";
+import {CheckAccessToken} from "./utils/check-token";
 
 export class Router {
     constructor() {
@@ -11,15 +12,7 @@ export class Router {
         this.profileFullNameElement = document.getElementById('profile-full-name');
 
         this.routes = [
-            {
-                route: '#/signup',
-                title: 'Регистрация',
-                template: 'templates/signup.html',
-                styles: 'styles/form.css',
-                load: () => {
-                    new Form('signup');
-                }
-            },
+
             {
                 route: '#/login',
                 title: 'Вход в систему',
@@ -30,13 +23,22 @@ export class Router {
                 }
             },
             {
+                route: '#/signup',
+                title: 'Регистрация',
+                template: 'templates/signup.html',
+                styles: 'styles/form.css',
+                load: () => {
+                    new Form('signup');
+                }
+            },
+            {
                 route: '#/main',
                 title: 'Главная',
                 template: 'templates/main.html',
                 styles: 'styles/main.css',
                 script: 'src/utils/bootstrap.min.js',
                 load: () => {
-
+                    new  CheckAccessToken();
                 }
             },
             {
@@ -138,7 +140,7 @@ export class Router {
         });
 
         if (!newRoute) {
-            window.location.href = '#/main';
+            window.location.href = '#/login';
             return;
         }
 
