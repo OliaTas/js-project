@@ -6,6 +6,11 @@ body {
     margin-bottom: 60px;
 }
 
+.main-header {
+     padding-left: 0px;
+    margin: 50px auto;
+}
+
 .h3 {
     font-size: 40px;
     color: #052C65;
@@ -18,7 +23,7 @@ body {
 
 .form-signup {
     margin: 50px auto;
-    max-width: 397px;
+    width: 397px;
     height: 38px;
 }
 

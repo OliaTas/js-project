@@ -27,7 +27,7 @@ a {
 }
 
 .sidebar {
-    display: flex;
+    display: none;
 }
 
 .main {

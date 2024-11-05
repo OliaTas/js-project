@@ -7,14 +7,6 @@ export class Form {
         this.processElement = null;
         this.page = page;
 
-
-        // const accessToken = localStorage.getItem(Auth.accessTokenKey);
-        //
-        // if (accessToken) {
-        //     location.href = "#/login";
-        //     return;
-        // }
-
         this.fields = [
             {
                 name: 'email',
@@ -92,10 +84,6 @@ export class Form {
 
 
     async processForm() {
-        if(this.validateForm()) {
-
-            location.href = '#/main.html';
-        }
         if (this.validateForm()) {
             if (this.page === 'signup') {
                 const email = this.fields.find(item => item.name === 'email').element.value;
@@ -114,9 +102,9 @@ export class Form {
                         if (result.error || !result.user) {
                             throw new Error(result.message);
                         }
-                        Auth.setUserEmail({
-                            email: result.user.email
-                        });
+                        // Auth.setUserEmail({
+                        //     email: result.user.email
+                        // });
                     }
 
                 } catch (error) {

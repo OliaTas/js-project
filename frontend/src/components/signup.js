@@ -49,6 +49,8 @@
 
         },
         validateField(field, element) {
+            const passwordElement = field.name.password;
+            console.log(passwordElement)
 
             if(!element.value || !element.value.match(field.regex)) {
                 element.parentNode.lastElementChild.style.borderColor = 'red';

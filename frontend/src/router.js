@@ -10,6 +10,7 @@ export class Router {
         this.titleElement = document.getElementById('title');
         this.profileElement = document.getElementById('profile');
         this.profileFullNameElement = document.getElementById('profile-full-name');
+        this.sideBar = document.querySelector('.sidebar')
 
         this.routes = [
 
@@ -153,6 +154,7 @@ export class Router {
         const accessToken = localStorage.getItem(Auth.accessTokenKey);
         if (userInfo && accessToken) {
             this.profileFullNameElement.innerText = userInfo.fullName;
+            this.sideBar.style.display = "flex";
         }
 
         newRoute.load();
