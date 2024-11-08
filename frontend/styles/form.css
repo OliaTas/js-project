@@ -6,6 +6,10 @@ body {
     margin-bottom: 60px;
 }
 
+.sidebar {
+    display: none;
+}
+
 .main-header {
      padding-left: 0px;
     margin: 50px auto;

@@ -27,3 +27,7 @@
 //         hoverOffset: 4
 //     }]
 // };
+
+export class Main {
+
+}

@@ -26,7 +26,8 @@ export class Form {
         ];
 
         if (this.page === 'signup') {
-            this.fields.unshift({
+            this.fields.unshift(
+                {
                     name: 'name',
                     id: 'name',
                     element: null,
@@ -48,7 +49,6 @@ export class Form {
 
         this.fields.forEach(item => {
             item.element = document.getElementById(item.id);
-            console.log(item.element)
             item.element.onchange = function () {
                 that.validateField.call(that, item, this)
             }
@@ -58,15 +58,27 @@ export class Form {
         this.processElement.onclick = function () {
             that.processForm();
         }
+
+
+        if (this.page === 'login') {
+            this.rememberElement = document.getElementById('remember');
+            this.rememberElement.onchange = function () {
+                that.validateForm();
+            }
+        }
     }
 
     validateField(field, element) {
-        console.log(field.name.password)
-        if (!element.value || !element.value.match(field.regex)) {
-            element.parentNode.style.borderColor = 'red';
+        const password = this.fields.find(item => item.name === 'password').element.value;
+        const repeatPassword = this.fields.find(item => item.name === 'repeat-password').element.value;
+        // console.log(password)
+        // console.log(repeatPassword)
+        if (!element.value || !element.value.match(field.regex) && password !== repeatPassword  ) {
+            element.style.borderColor = 'red';
             field.valid = false;
-        } else {
-            element.parentNode.removeAttribute('style');
+        }
+        else {
+            element.removeAttribute('style');
             field.valid = true;
         }
         this.validateForm();
@@ -74,39 +86,34 @@ export class Form {
 
     validateForm() {
         const validForm = this.fields.every(item => item.valid);
-        if (validForm) {
+        const isValid = this.rememberElement ? this.rememberElement.checked && validForm : validForm;
+        if (isValid) {
             this.processElement.removeAttribute('disabled');
         } else {
             this.processElement.setAttribute('disabled', 'disabled');
         }
-        return validForm;
+        return isValid;
     }
 
 
     async processForm() {
         if (this.validateForm()) {
-            if (this.page === 'signup') {
-                const email = this.fields.find(item => item.name === 'email').element.value;
-                const password = this.fields.find(item => item.name === 'password').element.value;
-                const repeatPassword = this.fields.find(item => item.name === 'repeat-password').element.value;
 
+            if (this.page === 'signup') {
                 try {
                     const result = await CustomHttp.request(config.host + '/signup', "POST", {
                         name: this.fields.find(item => item.name === 'name').element.value,
-                        email: email,
-                        password: password,
-                        repeatPassword: repeatPassword,
+                        email: this.fields.find(item => item.name === 'email').element.value,
+                        password: this.fields.find(item => item.name === 'password').element.value,
+                        repeatPassword: this.fields.find(item => item.name === 'repeat-password').element.value,
                     });
 
                     if (result) {
                         if (result.error || !result.user) {
                             throw new Error(result.message);
                         }
-                        // Auth.setUserEmail({
-                        //     email: result.user.email
-                        // });
+                        location.href = '#/main';
                     }
-
                 } catch (error) {
                     return console.log(error);
                 }

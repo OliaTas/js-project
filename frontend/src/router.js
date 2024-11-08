@@ -1,7 +1,8 @@
 import {Incomes} from "./components/incomes.js";
 import {Form} from "./components/form.js";
 import {Auth} from "./services/auth.js";
-import {CheckAccessToken} from "./utils/check-token";
+import {CheckAccessToken} from "./utils/check-token.js";
+import {Main} from "./components/main.js";
 
 export class Router {
     constructor() {
@@ -40,6 +41,7 @@ export class Router {
                 script: 'src/utils/bootstrap.min.js',
                 load: () => {
                     new  CheckAccessToken();
+                    new Main ();
                 }
             },
             {
