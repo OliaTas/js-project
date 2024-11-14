@@ -66,14 +66,11 @@ export class Form {
                 that.validateForm();
             }
         }
+
     }
 
     validateField(field, element) {
-        const password = this.fields.find(item => item.name === 'password').element.value;
-        const repeatPassword = this.fields.find(item => item.name === 'repeat-password').element.value;
-        // console.log(password)
-        // console.log(repeatPassword)
-        if (!element.value || !element.value.match(field.regex) && password !== repeatPassword  ) {
+        if (!element.value || !element.value.match(field.regex) ) {
             element.style.borderColor = 'red';
             field.valid = false;
         }
@@ -81,6 +78,21 @@ export class Form {
             element.removeAttribute('style');
             field.valid = true;
         }
+
+//Проверка пароля
+//         if (this.page === 'signup') {
+//             const password = this.fields.find(item => item.name === 'password').element.value;
+//             const repeatPassword = this.fields.find(item => item.name === 'repeat-password').element.value;
+//             if ( repeatPassword !== password) {
+//                 element.style.borderColor = 'red';
+//                 field.valid = false;
+//             }
+//             else {
+//                 element.removeAttribute('style');
+//                 field.valid = true;
+//             }
+//         }
+
         this.validateForm();
     }
 
@@ -103,9 +115,10 @@ export class Form {
                 try {
                     const result = await CustomHttp.request(config.host + '/signup', "POST", {
                         name: this.fields.find(item => item.name === 'name').element.value,
+                        lastName: this.fields.find(item => item.name === 'name').element.value,
                         email: this.fields.find(item => item.name === 'email').element.value,
                         password: this.fields.find(item => item.name === 'password').element.value,
-                        repeatPassword: this.fields.find(item => item.name === 'repeat-password').element.value,
+                        passwordRepeat: this.fields.find(item => item.name === 'repeat-password').element.value,
                     });
 
                     if (result) {
