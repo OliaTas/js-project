@@ -9,7 +9,6 @@ export class Router {
         this.contentElement = document.getElementById('content');
         this.stylesElement = document.getElementById('styles');
         this.titleElement = document.getElementById('title');
-        this.profileElement = document.getElementById('profile');
         this.profileFullNameElement = document.getElementById('profile-full-name');
         this.sideBar = document.querySelector('.sidebar')
 
@@ -155,8 +154,8 @@ export class Router {
         const userInfo = Auth.getUserInfo();
         const accessToken = localStorage.getItem(Auth.accessTokenKey);
         if (userInfo && accessToken) {
-            this.profileFullNameElement.innerText = userInfo.fullName;
-            this.sideBar.style.display = "flex";
+            this.profileFullNameElement.innerText = userInfo.lastName;
+            // this.sideBar.style.display = "flex";
         }
 
         newRoute.load();

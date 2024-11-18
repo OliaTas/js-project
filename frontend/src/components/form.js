@@ -72,27 +72,16 @@ export class Form {
     validateField(field, element) {
         if (!element.value || !element.value.match(field.regex) ) {
             element.style.borderColor = 'red';
+            element.nextElementSibling.style.display = 'flex';
+            element.parentElement.style.marginBottom = '50px';
             field.valid = false;
         }
         else {
             element.removeAttribute('style');
+            element.nextElementSibling.style.display = 'none';
+            element.parentElement.style.marginBottom = '10px';
             field.valid = true;
         }
-
-//Проверка пароля
-//         if (this.page === 'signup') {
-//             const password = this.fields.find(item => item.name === 'password').element.value;
-//             const repeatPassword = this.fields.find(item => item.name === 'repeat-password').element.value;
-//             if ( repeatPassword !== password) {
-//                 element.style.borderColor = 'red';
-//                 field.valid = false;
-//             }
-//             else {
-//                 element.removeAttribute('style');
-//                 field.valid = true;
-//             }
-//         }
-
         this.validateForm();
     }
 
@@ -122,7 +111,7 @@ export class Form {
                     });
 
                     if (result) {
-                        if (result.error || !result.user) {
+                        if (result.error || !result.user.id) {
                             throw new Error(result.message);
                         }
                         location.href = '#/main';
@@ -139,14 +128,21 @@ export class Form {
                 });
 
                 if (result) {
-                    if (result.error || !result.accessToken || !result.refreshToken
-                        || !result.fullName || !result.userId) {
+                    if (
+                        result.error ||
+                        !result.tokens.accessToken ||
+                        !result.tokens.refreshToken ||
+                        !result.user.id ||
+                        !result.user.name ||
+                        !result.user.lastName
+                    ){
                         throw new Error(result.message);
                     }
-                    Auth.setTokens(result.accessToken, result.refreshToken);
+                    Auth.setTokens(result.tokens.accessToken, result.tokens.refreshToken);
                     Auth.setUserInfo({
-                        fullName: result.fullName,
-                        userId: result.userId
+                        name: result.user.name,
+                        lastName: result.user.lastName,
+                        userId: result.user.id
                     });
 
                     location.href = '#/main';
