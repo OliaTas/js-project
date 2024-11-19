@@ -9,9 +9,9 @@
                                 <h2 class="card-text">Депозиты</h2>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary btn-edit">Редактировать
+                                        <button type="button" id="btn-edit" class="btn btn-sm btn-primary btn-edit">Редактировать
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-danger btn-delete">Удалить</button>
+                                        <button type="button" id="btn-delete" class="btn btn-sm btn-danger btn-delete">Удалить</button>
                                     </div>
                                 </div>
                             </div>
@@ -23,9 +23,9 @@
                                 <h2 class="card-text">Зарплата</h2>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary  btn-edit">Редактировать
+                                        <button type="button" id="btn-edit"  class="btn btn-sm btn-primary  btn-edit">Редактировать
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-danger btn-delete">Удалить</button>
+                                        <button type="button" id="btn-delete" class="btn btn-sm btn-danger btn-delete">Удалить</button>
                                     </div>
                                 </div>
                             </div>
@@ -37,9 +37,9 @@
                                 <h2 class="card-text">Сбережения</h2>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary btn-edit">Редактировать
+                                        <button type="button" id="btn-edit" class="btn btn-sm btn-primary btn-edit">Редактировать
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-danger btn-delete">Удалить</button>
+                                        <button type="button" id="btn-delete" class="btn btn-sm btn-danger btn-delete">Удалить</button>
                                     </div>
                                 </div>
                             </div>
@@ -51,9 +51,9 @@
                                 <h2 class="card-text">Инвестиции</h2>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary btn-edit">Редактировать
+                                        <button type="button" id="btn-edit" class="btn btn-sm btn-primary btn-edit">Редактировать
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-danger btn-delete ">Удалить</button>
+                                        <button type="button" id="btn-delete" class="btn btn-sm btn-danger btn-delete ">Удалить</button>
                                     </div>
                                 </div>
                             </div>
@@ -71,16 +71,16 @@
             </div>
         </section>
 
-        <section class="modal fade show" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
-             aria-modal="true" role="dialog" style="display: block;">
+        <section id="modal" class="modal fade show" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+             aria-modal="true" role="dialog" >
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content d-flex align-items-center">
                     <div class="modal-body p-0">
                         <p>Вы действительно хотите удалить категорию? Связанные доходы будут удалены навсегда.</p>
                     </div>
                     <div class="modal-footer p-0">
-                        <button type="button" class="btn btn-success " data-bs-dismiss="modal">Да, удалить</button>
-                        <button type="button" class="btn btn-danger m-0">Не удалять</button>
+                        <button type="button" id="btn-y-delete" class="btn btn-success " data-bs-dismiss="modal">Да, удалить</button>
+                        <button type="button" id="btn-no-delete" class="btn btn-danger m-0">Не удалять</button>
                     </div>
                 </div>
             </div>

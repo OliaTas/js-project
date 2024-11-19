@@ -10,7 +10,6 @@ export class Router {
         this.stylesElement = document.getElementById('styles');
         this.titleElement = document.getElementById('title');
         this.profileFullNameElement = document.getElementById('profile-full-name');
-        this.sideBar = document.querySelector('.sidebar')
 
         this.routes = [
 
