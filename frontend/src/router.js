@@ -49,6 +49,7 @@ export class Router {
                 template: 'templates/income-expenses.html',
                 styles: 'styles/income-expenses.css',
                 load: () => {
+                    new  CheckAccessToken();
 
                 }
             },
@@ -58,6 +59,7 @@ export class Router {
                 template: 'templates/create-income-expenses.html',
                 styles: 'styles/income-expenses.css',
                 load: () => {
+                    new  CheckAccessToken();
 
                 }
             },
@@ -67,6 +69,7 @@ export class Router {
                 template: 'templates/edit-income-expenses.html',
                 styles: 'styles/income-expenses.css',
                 load: () => {
+                    new  CheckAccessToken();
 
                 }
             },
@@ -76,6 +79,7 @@ export class Router {
                 template: 'templates/incomes.html',
                 styles: 'styles/incomes.css',
                 load: () => {
+                    new  CheckAccessToken();
                     new Incomes();
                 }
             },
@@ -85,6 +89,7 @@ export class Router {
                 template: 'templates/create-income.html',
                 styles: 'styles/incomes.css',
                 load: () => {
+                    new  CheckAccessToken();
 
                 }
             },
@@ -94,6 +99,7 @@ export class Router {
                 template: 'templates/edit-income.html',
                 styles: 'styles/incomes.css',
                 load: () => {
+                    new  CheckAccessToken();
 
                 }
             },
@@ -103,6 +109,7 @@ export class Router {
                 template: 'templates/expenses.html',
                 styles: 'styles/incomes.css',
                 load: () => {
+                    new  CheckAccessToken();
 
                 }
             },
@@ -112,6 +119,7 @@ export class Router {
                 template: 'templates/create-expenses.html',
                 styles: 'styles/incomes.css',
                 load: () => {
+                    new  CheckAccessToken();
 
                 }
             },
@@ -121,6 +129,7 @@ export class Router {
                 template: 'templates/edit-expenses.html',
                 styles: 'styles/incomes.css',
                 load: () => {
+                    new  CheckAccessToken();
 
                 }
             },
