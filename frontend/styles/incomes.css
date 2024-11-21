@@ -2,8 +2,19 @@
     margin-top: 530px;
 }
 
+.col {
+    width: 352px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.row>* {
+    padding-right: 0;
+    padding-left: 0;
+}
+
 .card {
-    max-width: 352px;
+
     height: 121px;
     border-color: #CED4DA;
 }
@@ -45,10 +56,23 @@
     align-items: center;
     display: flex;
     justify-content: center;
+
+}
+
+.card-add img {
     cursor: pointer;
+}
+
+.card-add img:hover {
+    width: 20px;
 }
 
 .modal {
     display: none;
+}
+
+#add-btn {
+    border: transparent;
+    background-color: transparent;
 }
 

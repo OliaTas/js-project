@@ -132,7 +132,9 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body card-add">
-                                <img src="images/plus.png" alt="Plus">
+                                <button type="button" id="add-btn">
+                                    <img src="images/plus.png" alt="Plus">
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -140,7 +142,7 @@
                 </div>
             </div>
         </section>
-        <section class="modal fade show" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+        <section class="modal fade show" id="modal" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
              aria-modal="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content d-flex align-items-center">
@@ -148,8 +150,8 @@
                         <p>Вы действительно хотите удалить категорию? Связанные доходы будут удалены навсегда.</p>
                     </div>
                     <div class="modal-footer p-0">
-                        <button type="button" class="btn btn-success " data-bs-dismiss="modal">Да, удалить</button>
-                        <button type="button" class="btn btn-danger m-0">Не удалять</button>
+                        <button type="button" id="btn-y-delete" class="btn btn-success " data-bs-dismiss="modal">Да, удалить</button>
+                        <button type="button" id="btn-no-delete" class="btn btn-danger m-0">Не удалять</button>
                     </div>
                 </div>
             </div>

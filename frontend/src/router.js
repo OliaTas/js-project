@@ -3,6 +3,12 @@ import {Form} from "./components/form.js";
 import {Auth} from "./services/auth.js";
 import {CheckAccessToken} from "./utils/check-token.js";
 import {Main} from "./components/main.js";
+import {EditIncomes} from "./components/edit-incomes.js";
+import {CreateIncomes} from "./components/create-incomes.js";
+import {Expenses} from "./components/expenses.js";
+import {CreateExpenses} from "./components/create-expenses.js";
+import {EditExpenses} from "./components/edit-expenses.js";
+import {IncomeExpenses} from "./components/income-expenses.js";
 
 export class Router {
     constructor() {
@@ -49,7 +55,7 @@ export class Router {
                 styles: 'styles/income-expenses.css',
                 load: () => {
                     new  CheckAccessToken();
-
+                    new IncomeExpenses();
                 }
             },
             {
@@ -89,7 +95,7 @@ export class Router {
                 styles: 'styles/incomes.css',
                 load: () => {
                     new  CheckAccessToken();
-
+                    new CreateIncomes();
                 }
             },
             {
@@ -99,7 +105,7 @@ export class Router {
                 styles: 'styles/incomes.css',
                 load: () => {
                     new  CheckAccessToken();
-
+                    new EditIncomes();
                 }
             },
             {
@@ -109,7 +115,7 @@ export class Router {
                 styles: 'styles/incomes.css',
                 load: () => {
                     new  CheckAccessToken();
-
+                    new Expenses();
                 }
             },
             {
@@ -119,7 +125,7 @@ export class Router {
                 styles: 'styles/incomes.css',
                 load: () => {
                     new  CheckAccessToken();
-
+                    new CreateExpenses()
                 }
             },
             {
@@ -129,7 +135,7 @@ export class Router {
                 styles: 'styles/incomes.css',
                 load: () => {
                     new  CheckAccessToken();
-
+                    new EditExpenses();
                 }
             },
 

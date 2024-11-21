@@ -2,16 +2,16 @@
         <h1 class="main-header-title">Доходы</h1>
         <section class="album">
             <div class="container p-0">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <div class="col">
+                <div id="block" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 ">
+                    <div  class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h2 class="card-text">Депозиты</h2>
+                                <h2 id="card-text" class="card-text">Депозиты</h2>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" id="btn-edit" class="btn btn-sm btn-primary btn-edit">Редактировать
                                         </button>
-                                        <button type="button" id="btn-delete" class="btn btn-sm btn-danger btn-delete">Удалить</button>
+                                        <button type="button"  class="btn btn-sm btn-danger btn-delete">Удалить</button>
                                     </div>
                                 </div>
                             </div>
@@ -23,23 +23,23 @@
                                 <h2 class="card-text">Зарплата</h2>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" id="btn-edit"  class="btn btn-sm btn-primary  btn-edit">Редактировать
+                                        <button type="button" class="btn btn-sm btn-primary  btn-edit">Редактировать
                                         </button>
-                                        <button type="button" id="btn-delete" class="btn btn-sm btn-danger btn-delete">Удалить</button>
+                                        <button type="button" class="btn btn-sm btn-danger btn-delete">Удалить</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col" >
                         <div class="card">
                             <div class="card-body">
                                 <h2 class="card-text">Сбережения</h2>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" id="btn-edit" class="btn btn-sm btn-primary btn-edit">Редактировать
+                                        <button type="button" class="btn btn-sm btn-primary btn-edit">Редактировать
                                         </button>
-                                        <button type="button" id="btn-delete" class="btn btn-sm btn-danger btn-delete">Удалить</button>
+                                        <button type="button" class="btn btn-sm btn-danger btn-delete">Удалить</button>
                                     </div>
                                 </div>
                             </div>
@@ -51,9 +51,9 @@
                                 <h2 class="card-text">Инвестиции</h2>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" id="btn-edit" class="btn btn-sm btn-primary btn-edit">Редактировать
+                                        <button type="button" class="btn btn-sm btn-primary btn-edit">Редактировать
                                         </button>
-                                        <button type="button" id="btn-delete" class="btn btn-sm btn-danger btn-delete ">Удалить</button>
+                                        <button type="button" class="btn btn-sm btn-danger btn-delete ">Удалить</button>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,9 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body card-add">
-                                <img src="images/plus.png" alt="Plus">
+                                <button type="button" id="add-btn">
+                                    <img src="images/plus.png" alt="Plus">
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -71,7 +73,7 @@
             </div>
         </section>
 
-        <section id="modal" class="modal fade show" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+        <section id="modal" class="modal fade show"  tabindex="-1" aria-labelledby="exampleModalCenterTitle"
              aria-modal="true" role="dialog" >
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content d-flex align-items-center">

@@ -1,38 +1,61 @@
 export class Incomes {
     constructor() {
-        this.editButton = document.getElementById('btn-edit');
-        this.deleteButton = document.getElementById('btn-delete');
+        this.editButton = document.getElementsByClassName('btn-edit');
+        this.cardName = document.getElementById('card-text');
+        this.deleteButton = document.getElementsByClassName('btn-delete');
         this.modal = document.getElementById('modal');
         this.btnDelete = document.getElementById('btn-y-delete');
         this.btnNoDelete = document.getElementById('btn-no-delete');
+        this.addCardBtn = document.getElementById('add-btn');
+        this.block = document.getElementById('block')
+        this.cardText = document.querySelector('.card-text')
 
         const that = this;
-        this.editButton.onclick = function () {
-            that.editButtonProcess ();
+        for (let i = 0; i < this.editButton.length; i++) this.editButton[i].onclick =  function () {
+            that.editIncomeProcess ();
         }
 
-        this.deleteButton.onclick = function () {
-            that.deleteButtonProcess ();
+        for (let i = 0; i < this.deleteButton.length; i++) this.deleteButton[i].onclick =  function () {
+            that.deleteIncomeProcess ();
         }
 
         this.btnDelete.onclick = function () {
-            that.modalProcess ();
+            that.deleteModalProcess ();
         }
+
         this.btnNoDelete.onclick = function () {
             that.modalProcess ();
         }
+
+        this.addCardBtn.onclick = function () {
+            that.addCardProcess();
+        }
+
+
     }
 
-    editButtonProcess () {
+    editIncomeProcess () {
+        localStorage.setItem('cardText', this.cardText.value)
+        console.log(localStorage.cardText)
         location.href = '#/edit-income';
     }
 
-    deleteButtonProcess () {
-        this.modal.style.display = 'flex';
+    deleteIncomeProcess () {
+       this.modal.style.display = 'flex';
+    }
+
+    deleteModalProcess () {
+
+        document.querySelector('.col').remove(); //удаление карточки
+        this.modal.style.display = 'none';
     }
 
     modalProcess () {
-        this.modal.style.display = 'on';
+        this.modal.style.display = 'none';
+    }
+
+    addCardProcess () {
+        location.href = '#/create-income';
     }
 
 
