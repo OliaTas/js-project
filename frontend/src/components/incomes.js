@@ -1,7 +1,7 @@
 import {CustomHttp} from "../services/custom-http.js";
 import config from "../../config/config.js";
 import {Auth} from "../services/auth.js";
-
+import {UrlManager} from "../utils/url-manager.js";
 
 
 export class Incomes {
@@ -16,6 +16,30 @@ export class Incomes {
         // this.block = document.getElementById('block')
         // this.cardText = document.querySelector('.card-text')
         this.incomeCategory = null;
+        this.routeParams = UrlManager.getQueryParams();
+
+        this.init();
+    }
+
+    async init() {
+        const userInfo = Auth.getUserInfo();
+        if (!userInfo) {
+            location.href = '#/';
+        }
+        if(this.routeParams.id) {
+            try {
+                const result = await CustomHttp.request(config.host + '/categories/income/'+ this.routeParams.id);
+                if (result) {
+                    if (result.error) {
+                        throw new Error(result.error);
+                    }
+                    this.incomeCategory = result;
+                    console.log(this.incomeCategory)
+                }
+            } catch (error) {
+                return console.log(error)
+            }
+        }
 
         // const that = this;
         // for (let i = 0; i < this.editButton.length; i++) this.editButton[i].onclick = function () {
@@ -37,27 +61,6 @@ export class Incomes {
         // this.addCardBtn.onclick = function () {
         //     that.addCardProcess();
         // }
-
-        this.init();
-    }
-
-    async init() {
-
-
-             const result = await CustomHttp.request(config.host + '/categories/income/')
-             console.log(result)
-             if (result) {
-                 if (result.error || !result.tokens.accessToken || !result.tokens.refreshToken) {
-                     throw new Error(result.message);
-                 }
-
-                 this.incomeCategory = result;
-                 console.log(this.incomeCategory.categories)
-             }
-
-
-
-
     }
 
     // editIncomeProcess () {
