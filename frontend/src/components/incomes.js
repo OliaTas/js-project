@@ -15,30 +15,24 @@ export class Incomes {
         // this.addCardBtn = document.getElementById('add-btn');
         // this.block = document.getElementById('block')
         // this.cardText = document.querySelector('.card-text')
-        this.incomeCategory = null;
-        this.routeParams = UrlManager.getQueryParams();
+        this.incomeCategory = [];
+
 
         this.init();
     }
 
     async init() {
-        const userInfo = Auth.getUserInfo();
-        if (!userInfo) {
-            location.href = '#/';
-        }
-        if(this.routeParams.id) {
-            try {
-                const result = await CustomHttp.request(config.host + '/categories/income/'+ this.routeParams.id);
-                if (result) {
-                    if (result.error) {
-                        throw new Error(result.error);
-                    }
-                    this.incomeCategory = result;
-                    console.log(this.incomeCategory)
+        try {
+            const result = await CustomHttp.request(config.host + '/categories/income');
+            if (result) {
+                if (result.error) {
+                    throw new Error(result.error);
                 }
-            } catch (error) {
-                return console.log(error)
+                this.incomeCategory = result;
+                console.log(this.incomeCategory)
             }
+        } catch (error) {
+            return console.log(error)
         }
 
         // const that = this;
