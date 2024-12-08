@@ -23,7 +23,7 @@ export class Incomes {
 
     async init() {
         try {
-            const result = await CustomHttp.request(config.host + '/categories/income');
+            const result = await CustomHttp.request(config.host + '/categories/income', "GET");
             if (result) {
                 if (result.error) {
                     throw new Error(result.error);
