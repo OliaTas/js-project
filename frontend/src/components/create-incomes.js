@@ -20,6 +20,7 @@ export class CreateIncomes {
         }
     }
 
+
     createIncomeProcess() {
         if (!this.input.value) {
             this.input.style.border = '1px solid red';

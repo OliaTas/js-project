@@ -49,36 +49,6 @@ export class Router {
                 }
             },
             {
-                route: '#/income-expenses',
-                title: 'Доходы и расходы',
-                template: 'templates/income-expenses.html',
-                styles: 'styles/income-expenses.css',
-                load: () => {
-                    new  CheckAccessToken();
-                    new IncomeExpenses();
-                }
-            },
-            {
-                route: '#/create-income-expenses',
-                title: 'Создание дохода/расхода',
-                template: 'templates/create-income-expenses.html',
-                styles: 'styles/income-expenses.css',
-                load: () => {
-                    new  CheckAccessToken();
-
-                }
-            },
-            {
-                route: '#/edit-income-expenses',
-                title: 'Редактирование дохода/расхода',
-                template: 'templates/edit-income-expenses.html',
-                styles: 'styles/income-expenses.css',
-                load: () => {
-                    new  CheckAccessToken();
-
-                }
-            },
-            {
                 route: '#/incomes',
                 title: 'Доходы',
                 template: 'templates/incomes.html',
@@ -138,7 +108,36 @@ export class Router {
                     new EditExpenses();
                 }
             },
+            {
+                route: '#/income-expenses',
+                title: 'Доходы и расходы',
+                template: 'templates/income-expenses.html',
+                styles: 'styles/income-expenses.css',
+                load: () => {
+                    new  CheckAccessToken();
+                    new IncomeExpenses();
+                }
+            },
+            {
+                route: '#/create-income-expenses',
+                title: 'Создание дохода/расхода',
+                template: 'templates/create-income-expenses.html',
+                styles: 'styles/income-expenses.css',
+                load: () => {
+                    new  CheckAccessToken();
 
+                }
+            },
+            {
+                route: '#/edit-income-expenses',
+                title: 'Редактирование дохода/расхода',
+                template: 'templates/edit-income-expenses.html',
+                styles: 'styles/income-expenses.css',
+                load: () => {
+                    new  CheckAccessToken();
+
+                }
+            },
 
         ]
     }

@@ -1,3 +1,6 @@
+import {CustomHttp} from "../services/custom-http";
+import config from "../../config/config";
+
 export class EditIncomes {
     constructor() {
         this.cardName = document.getElementById('card-text');
@@ -8,31 +11,26 @@ export class EditIncomes {
 
         this.input.placeholder = this.card;
 
-        const that = this;
-
-        this.saveBtn.onclick = function () {
-            that.saveEditProcess();
-        }
-
-        this.cancelBtn.onclick = function () {
-            that.cancelEditProcess();
-        }
-
+        this.saveEditProcess().then();
+        this.cancelEditProcess();
     }
 
 
-    saveEditProcess () {
-        localStorage.setItem('cardName', this.input.value)
-        console.log(localStorage.cardName)
+    async saveEditProcess () {
+        // const result = await CustomHttp.request(config.host + '/api/categories/income/1', "PUT");
+        this.saveBtn.onclick = function () {
 
-        location.href = '#/incomes';
-        const newCardName = localStorage.getItem("cardName");
-        console.log(newCardName)
-        this.cardName.textContent = newCardName.value
+            location.href = '#/incomes';
+        }
+
+
 
     }
     cancelEditProcess () {
-        location.href = '#/incomes';
+        this.cancelBtn.onclick = function () {
+            location.href = '#/incomes';
+        }
+
     }
 
 
