@@ -1,45 +1,56 @@
+import {CustomHttp} from "../services/custom-http.js";
+import config from "../../config/config.js";
+
 export class CreateIncomes {
     constructor() {
 
         this.createIncomeBtn = document.getElementById('create-income-btn');
         this.cancelIncomeBtn = document.getElementById('cancel-create-income-btn');
         this.input = document.getElementById('creatIncome');
-        this.block = document.getElementById('block');
-
-
-        const that = this;
-
-        this.createIncomeBtn.onclick = function () {
-            // localStorage.setItem('cardName', this.input.value)
-            // console.log(localStorage.cardName)
-            that.createIncomeProcess();
-        }
-
-        this.cancelIncomeBtn.onclick = function () {
-            that.cancelIncomeProcess();
-        }
+        
+        this.addEventListeners();
     }
 
 
-    createIncomeProcess() {
-        if (!this.input.value) {
-            this.input.style.border = '1px solid red';
-            console.log(this.input.value)
-        } else {
-            location.href = '#/incomes';
-            //добавление категории
-            let newBlock = document.querySelector('.col');
-            let clonedBlock = newBlock.cloneNode(true);
-            this.block.appendChild(clonedBlock);
+    addEventListeners() {
+        this.createIncomeBtn.addEventListener('click', () => {
+            this.createIncome();
+        });
 
+        this.cancelIncomeBtn.addEventListener('click', () => {
+            this.cancelCreation();
+        });
+    }
+
+    async createIncome() {
+        const categoryIncome = this.input.value.trim();
+
+        if (categoryIncome === "") {
+            console.log('error')
+            return;
         }
 
+        try {
+            const result = await CustomHttp.request(config.host + '/categories/income', "POST", {
+                name: categoryIncome
+            });
 
+            if (result.error) {
+                throw new Error(result.error);
+            }
+
+            this.input.value = '';
+
+            window.location.href = '#/incomes';
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    cancelIncomeProcess() {
-        location.href = '#/incomes';
+   
+    cancelCreation() {
+        this.input.value = '';
+        window.location.href = '#/incomes'; 
     }
 
-
-}
+  }

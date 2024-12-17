@@ -3,22 +3,11 @@ import config from "../../config/config.js";
 import {Auth} from "../services/auth.js";
 import {UrlManager} from "../utils/url-manager.js";
 
-
 export class Incomes {
     constructor() {
-
-        // this.cardName = document.getElementById('card-text');
-
-        this.modal = document.getElementById('modal');
-        // this.btnDelete = document.getElementById('btn-y-delete');
-        // this.btnNoDelete = document.getElementById('btn-no-delete');
-        this.addCardBtn = document.getElementById('add-btn');
-        // this.block = document.getElementById('block')
-        this.cardText = document.querySelector('.card-text')
         this.incomeCategory = [];
-
-
         this.init();
+
     }
 
     async init() {
@@ -30,63 +19,75 @@ export class Incomes {
                 }
                 this.incomeCategory = result;
                 console.log(this.incomeCategory);
+                this.editIncomeProcess();
+                this.deleteIncomeProcess();
+                this.addCardProcess();           
             }
         } catch (error) {
             return console.log(error)
         }
-        this.editIncomeProcess();
-        this.deleteIncomeProcess();
-        this.addCardProcess();
-
-        // const that = this;
-        // for (let i = 0; i < this.editButton.length; i++) this.editButton[i].onclick = function () {
-        //     that.editIncomeProcess();
-        // }
-        //
-        // for (let i = 0; i < this.deleteButton.length; i++) this.deleteButton[i].onclick = function () {
-        //     that.deleteIncomeProcess();
-        // }
-        //
-        // this.btnDelete.onclick = function () {
-        //     that.deleteModalProcess();
-        // }
-        //
-        // this.btnNoDelete.onclick = function () {
-        //     that.modalProcess();
-        // }
-        //
-
     }
 
     editIncomeProcess() {
-               this.editButton = document.getElementsByClassName('btn-edit');
-        for (let i = 0; i < this.editButton.length; i++) this.editButton[i].onclick = function () {
-            location.href = '#/edit-income';
+        const editButtons = document.querySelectorAll('.btn-edit'); 
+        editButtons.forEach((button, index) => {
+        button.addEventListener('click', (event) => {
+            const categoryId = this.incomeCategory[index].id;
+            
+            sessionStorage.setItem('editingCategoryId', categoryId);
 
-        }
+              window.location.href = `#/edit-income?id=${categoryId}`;
+        });
+    });
     }
 
     deleteIncomeProcess() {
-        this.deleteButton = document.getElementsByClassName('btn-delete');
-        for (let i = 0; i < this.deleteButton.length; i++) this.deleteButton[i].onclick = function () {
-            this.modal.style.display = 'flex';
-        }
+        const deleteButton = document.querySelectorAll('.btn-delete');
+        const modal = new bootstrap.Modal(document.getElementById("modal"));
+       
+        deleteButton.forEach((button, index) => {
+            button.addEventListener('click', (event) => {
+                const categoryId = this.incomeCategory[index].id;
+                modal.show();
 
+                const btnDelete = document.getElementById("btn-y-delete");
+                btnDelete.onclick = () => {
+                    this.deleteCategory(categoryId);
+                    modal.hide(); 
+                };
+            });
+        });
+    
+        const btnCancelDelete = document.getElementById("btn-no-delete");
+        btnCancelDelete.onclick = () => {
+            modal.hide();
+        };
+    };
+
+    async deleteCategory(categoryId) {
+        try {
+            const result = await CustomHttp.request(config.host + `/categories/income/${categoryId}`, "DELETE");
+            if (result.error) {
+                throw new Error(result.error);
+            }
+            this.incomeCategory = result;
+                console.log(this.incomeCategory);
+            // this.incomeCategory = this.incomeCategory.filter(category => category.id !== categoryId);
+    
+            const cardElement = document.querySelectorAll('.card');
+            if (cardElement) {
+                cardElement.remove();
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    //
-    // deleteModalProcess () {
-    //
-    //     document.querySelector('.col').remove(); //удаление карточки
-    //     this.modal.style.display = 'none';
-    // }
-    //
-    // modalProcess () {
-    //     this.modal.style.display = 'none';
-    // }
-    //
-    addCardProcess () {
-        this.addCardBtn.onclick = function () {
+    
+
+    addCardProcess() {
+        const addCardBtn = document.getElementById('add-btn');
+        addCardBtn.onclick = function () {
             location.href = '#/create-income';
         }
     }

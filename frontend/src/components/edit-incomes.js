@@ -1,36 +1,60 @@
-import {CustomHttp} from "../services/custom-http";
-import config from "../../config/config";
+import {CustomHttp} from "../services/custom-http.js";
+import config from "../../config/config.js";
 
 export class EditIncomes {
     constructor() {
         this.cardName = document.getElementById('card-text');
-        this.input = document.getElementById("editIncome")
+        this.categoryNameInput = document.getElementById("category-name")
         this.saveBtn = document.getElementById('btn-save');
         this.cancelBtn = document.getElementById('btn-cancel');
-        this.card  = localStorage.getItem("cardText");
+        this.incomeCategory = null;
 
-        this.input.placeholder = this.card;
-
-        this.saveEditProcess().then();
+        this.init();
+        this.saveEditProcess();
         this.cancelEditProcess();
     }
 
+    async init() {
+           try {
+            const categoryId = sessionStorage.getItem('editingCategoryId');
 
-    async saveEditProcess () {
-        // const result = await CustomHttp.request(config.host + '/api/categories/income/1', "PUT");
-        this.saveBtn.onclick = function () {
+            if (!categoryId) {
+                throw new Error('Category ID not found in sessionStorage');
+            }
+            const result = await CustomHttp.request(config.host + `/categories/income/${categoryId}`, "GET");
 
-            location.href = '#/incomes';
+            if (result) {
+                this.categoryNameInput.value = result.title; 
+                this.incomeCategory = result; 
+                console.log(this.incomeCategory);          
+            }
+        } catch (error) {
+            console.log(error);
         }
-
-
-
     }
-    cancelEditProcess () {
-        this.cancelBtn.onclick = function () {
-            location.href = '#/incomes';
-        }
 
+    saveEditProcess() {
+        this.saveBtn.addEventListener('click', async () => {
+            const updatedCategoryName = this.categoryNameInput.value;
+
+            try {
+                const result = await CustomHttp.request(config.host + `/categories/income/${this.incomeCategory.id}`, "PUT", {
+                    title: updatedCategoryName
+                });
+
+                if (result) {
+                    location.href = '#/incomes';
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    cancelEditProcess() {
+        this.cancelBtn.addEventListener('click', () => {
+            window.location.href = '#/incomes';
+        });
     }
 
 
