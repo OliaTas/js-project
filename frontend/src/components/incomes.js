@@ -123,7 +123,7 @@ export class Incomes {
 
     async deleteCategory(categoryId) {
         try {
-            const result = await CustomHttp.request(config.host + `/categories/income/${this.incomeCategory.id}`, "DELETE");
+            const result = await CustomHttp.request(config.host + `/categories/income/${categoryId}`, "DELETE");
             if (result.error) {
                 throw new Error(result.error);
             }
