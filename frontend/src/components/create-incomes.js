@@ -26,15 +26,15 @@ export class CreateIncomes {
         const categoryIncome = this.input.value.trim();
 
         if (categoryIncome === "") {
-            console.log('error')
+            alert("Название категории не может быть пустым.");
             return;
         }
 
         try {
             const result = await CustomHttp.request(config.host + '/categories/income', "POST", {
-                name: categoryIncome
+                title: categoryIncome
             });
-
+   
             if (result.error) {
                 throw new Error(result.error);
             }
