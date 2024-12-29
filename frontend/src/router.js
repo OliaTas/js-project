@@ -9,6 +9,8 @@ import {Expenses} from "./components/expenses.js";
 import {CreateExpenses} from "./components/create-expenses.js";
 import {EditExpenses} from "./components/edit-expenses.js";
 import {IncomeExpenses} from "./components/income-expenses.js";
+import { CreateIncomeExpenses } from "./components/create-income-expenses.js";
+import { EditIncomeExpenses } from "./components/edit-income-expenses.js";
 
 export class Router {
     constructor() {
@@ -125,7 +127,7 @@ export class Router {
                 styles: 'styles/income-expenses.css',
                 load: () => {
                     new  CheckAccessToken();
-
+                    new CreateIncomeExpenses();
                 }
             },
             {
@@ -135,7 +137,7 @@ export class Router {
                 styles: 'styles/income-expenses.css',
                 load: () => {
                     new  CheckAccessToken();
-
+                    new EditIncomeExpenses;
                 }
             },
 

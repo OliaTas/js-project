@@ -1,71 +1,153 @@
 import {CustomHttp} from "../services/custom-http";
 import config from "../../config/config";
+import {Auth} from "../services/auth.js";
+
 
 export class Expenses {
     constructor() {
-        // this.editExpenses = document.getElementsByClassName('btn-edit');
-        // this.cardName = document.getElementsByClassName('card-text');
-        // this.deleteExpenses = document.getElementsByClassName('btn-delete');
-        // this.modal = document.getElementById('modal');
-        // this.btnDelete = document.getElementById('btn-y-delete');
-        // this.btnNoDelete = document.getElementById('btn-no-delete');
-        // this.addCardBtn = document.getElementById('add-btn');
-        //
-        // const that = this;
-        // for (let i = 0; i < this.editExpenses.length; i++) this.editExpenses[i].onclick =  function () {
-        //     that.editExpensesProcess ();
-        // }
-        //
-        // for (let i = 0; i < this.deleteExpenses.length; i++) this.deleteExpenses[i].onclick =  function () {
-        //     that.deleteExpensesProcess ();
-        // }
-        //
-        // this.btnDelete.onclick = function () {
-        //     that.modalProcess ();
-        // }
-        //
-        // this.btnNoDelete.onclick = function () {
-        //     that.modalProcess ();
-        // }
-        //
-        // this.addCardBtn.onclick = function () {
-        //     that.addCardProcess();
-        // }
         this.expenseCategory = [];
-
 
         this.init();
     }
+
     async init() {
         try {
-            const result = await CustomHttp.request(config.host + '/categories/expense');
+            const result = await CustomHttp.request(config.host + '/categories/expense', "GET");
             if (result) {
                 if (result.error) {
                     throw new Error(result.error);
                 }
                 this.expenseCategory = result;
-                console.log(this.expenseCategory)
+                console.log(this.expenseCategory);
+                this.showCardsProcess();
+                this.addCardProcess();  
             }
         } catch (error) {
             return console.log(error)
         }
     }
-    // editExpensesProcess () {
-    //     location.href = '#/edit-expenses';
-    //     // document.getElementById("editIncome").placeholder = "Edit name";
-    // }
-    //
-    // deleteExpensesProcess () {
-    //     this.modal.style.display = 'flex';
-    // }
-    //
-    // modalProcess () {
-    //     this.modal.style.display = 'none';
-    // }
-    //
-    // addCardProcess () {
-    //     location.href = '#/create-expenses';
-    // }
 
+    showCardsProcess() {
+        if(this.expenseCategory) {
+            const block = document.getElementById('block');
+            const addCardButton = document.querySelector('.card-add');
+
+            this.expenseCategory.forEach((category) => {
+            const newCard = document.createElement('div');
+            newCard.classList.add('col');
+            
+            const card = document.createElement('div');
+            card.classList.add('card');
+            
+            const cardBody = document.createElement('div');
+            cardBody.classList.add('card-body');
+            cardBody.setAttribute('data-id', category.id);
+            
+            const cardTitle = document.createElement('h2');
+            cardTitle.classList.add('card-text');
+            cardTitle.innerText = category.title;  
+            
+            const btnGroup = document.createElement('div');
+            btnGroup.classList.add('d-flex', 'justify-content-between', 'align-items-center');
+            
+            const buttons = document.createElement('div');
+            buttons.classList.add('btn-group');
+            
+            const editButton = document.createElement('button');
+            editButton.type = 'button';
+            editButton.classList.add('btn', 'btn-sm', 'btn-primary', 'btn-edit');
+            editButton.innerText = 'Редактировать';
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.type = 'button';
+            deleteButton.classList.add('btn', 'btn-sm', 'btn-danger', 'btn-delete');
+            deleteButton.innerText = 'Удалить';
+            
+            buttons.appendChild(editButton);
+            buttons.appendChild(deleteButton);
+            
+            btnGroup.appendChild(buttons);
+            
+            cardBody.appendChild(cardTitle);
+            cardBody.appendChild(btnGroup);
+            
+            card.appendChild(cardBody);
+            
+            newCard.appendChild(card);
+
+            block.insertBefore(newCard, addCardButton.closest('.col'));
+            })
+            
+            
+            this. editExpenseProcess();
+            this.deleteExpenseProcess();
+        }
+    };
+
+    editExpenseProcess() {
+        const editButtons = document.querySelectorAll('.btn-edit'); 
+        editButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const categoryId = this.expenseCategory[index].id;
+            
+            sessionStorage.setItem('editingCategoryId', categoryId);
+
+              window.location.href = `#/edit-expenses?id=${categoryId}`;
+        });
+    });
+    }
+
+    deleteExpenseProcess() {
+        const deleteButton = document.querySelectorAll('.btn-delete');
+        const modal = new bootstrap.Modal(document.getElementById("modal"));
+        
+        deleteButton.forEach((button) => {
+            button.addEventListener('click', (event) => {
+            const cardBody = button.closest('.card-body');
+            const categoryId = cardBody ? cardBody.getAttribute('data-id') : null; //проверка через тернарный оператор
+            // if(!categoryId) {
+            //     console.log('Id is not found');
+            //     return;
+            // }
+                modal.show();
+
+                const btnDelete = document.getElementById("btn-y-delete");
+                btnDelete.onclick = () => {
+                    this.deleteCategory(categoryId);
+                    modal.hide(); 
+                };
+            });
+        });
+    
+        const btnCancelDelete = document.getElementById("btn-no-delete");
+        btnCancelDelete.onclick = () => {
+            modal.hide();
+        };
+       
+    }
+    
+      async deleteCategory(categoryId) {
+            try {
+                const result = await CustomHttp.request(config.host + `/categories/expense/${categoryId}`, "DELETE");
+                if (result.error) {
+                    throw new Error(result.error);
+                }
+                
+                const cardToRemove = document.querySelector(`.col[data-id="${categoryId}"]`);
+                    if (cardToRemove) {
+                        cardToRemove.remove();
+                    }
+                
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    
+        addCardProcess() {
+            const addCardBtn = document.getElementById('add-btn');
+            addCardBtn.onclick = function () {
+                location.href = '#/create-expenses';
+            }
+        }
 
 }

@@ -7,7 +7,6 @@ export class Incomes {
     constructor() {
         this.incomeCategory = [];
         this.init();
-
     }
 
     async init() {
@@ -41,6 +40,7 @@ export class Incomes {
             
             const cardBody = document.createElement('div');
             cardBody.classList.add('card-body');
+            cardBody.setAttribute('data-id', category.id);
             
             const cardTitle = document.createElement('h2');
             cardTitle.classList.add('card-text');
@@ -102,7 +102,12 @@ export class Incomes {
         
         deleteButton.forEach((button) => {
             button.addEventListener('click', (event) => {
-            const categoryId = event.target.getAttribute('data-id');
+            const cardBody = button.closest('.card-body');
+            const categoryId = cardBody ? cardBody.getAttribute('data-id') : null; //проверка через тернарный оператор
+            // if(!categoryId) {
+            //     console.log('Id is not found');
+            //     return;
+            // }
                 modal.show();
 
                 const btnDelete = document.getElementById("btn-y-delete");

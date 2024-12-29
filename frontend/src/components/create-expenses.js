@@ -1,3 +1,6 @@
+import {CustomHttp} from "../services/custom-http.js";
+import config from "../../config/config.js";
+
 export class CreateExpenses {
     constructor() {
 
@@ -5,31 +8,49 @@ export class CreateExpenses {
         this.cancelExpenseBtn = document.getElementById('cancel-create-expense-btn');
         this.input = document.getElementById('creatExpenses');
 
-        const that = this;
-
-        this.createExpenseBtn.onclick = function () {
-            that.createExpenseProcess();
-        }
-
-        this.cancelExpenseBtn.onclick = function () {
-            that.cancelExpenseProcess();
-        }
+        this.addEventListeners();
     }
 
-    createExpenseProcess () {
-        if (!this.input.value) {
-            this.input.style.border = '1px solid red';
-            console.log(this.input.value)
-        } else {
-            location.href = '#/expenses';
+    addEventListeners() {
+        this.createExpenseBtn.addEventListener('click', () => {
+            this.createExpense ();
+        });
+
+        this.cancelExpenseBtn.addEventListener('click', () => {
+            this.cancelCreation();
+        });
+    }
+
+    async createExpense() {
+            const categoryExpense = this.input.value.trim();
+    
+            if (categoryExpense === "") {
+                alert("Название категории не может быть пустым.");
+                return;
+            }
+    
+            try {
+                const result = await CustomHttp.request(config.host + '/categories/expense', "POST", {
+                    title: categoryExpense
+                });
+       
+                if (result.error) {
+                    throw new Error(result.error);
+                }
+    
+                this.input.value = '';
+    
+                window.location.href = '#/expenses';
+            } catch (error) {
+                console.log(error);
+            }
         }
-
-
-    }
-
-    cancelExpenseProcess () {
-        location.href = '#/expenses';
-    }
+    
+       
+        cancelCreation() {
+            this.input.value = '';
+            window.location.href = '#/expenses'; 
+        }
 
 
 }

@@ -1,29 +1,38 @@
 <section id="content">
         <h1 class="main-header-title">Создание дохода/расхода</h1>
-        <section class="form-creat-income ">
+        <form  id="income-expense-form" class="form-creat-income ">
             <figure class="form-creat-input">
-                <input type="text" class="input d-block" id="creatName" placeholder="Название...">
-                <label for="creatName"></label>
+                <!-- <input type="text" class="input d-block" id="creatName" placeholder="Название...">
+                <label for="creatName"></label> -->
+                <label for="type"></label>
+            <select id="type" class="input">
+                <option>Название...</option>
+                <option value="income">Доход</option>
+                <option value="expense">Расход</option>
+            </select>
             </figure>
             <figure class="form-creat-input">
-                <input type="text" class="input d-block" id="creatCategory" placeholder="Категория...">
-                <label for="creatCategory"></label>
+                <!-- <input type="text" class="input d-block" id="creatCategory" placeholder="Категория...">
+                <label for="creatCategory"></label> -->
+                <label for="category"></label>
+            <select id="category" class="input">        
+            </select>
             </figure>
             <figure class="form-creat-input">
-                <input type="text" class="input d-block" id="creatSum" placeholder="Сумма в $...">
-                <label for="creatSum"></label>
+                <input type="number" class="input d-block" id="sum" placeholder="Сумма в $...">
+                <label for="sum"></label>
             </figure>
             <figure class="form-creat-input">
-                <input type="text" class="input d-block" id="creatDate" placeholder="Дата...">
-                <label for="creatDate"></label>
+                <input type="date" class="input d-block" id="date" placeholder="Дата...">
+                <label for="date"></label>
             </figure>
             <figure class="form-creat-input">
-                <input type="text" class="input d-block" id="creatComment" placeholder="Комментарий...">
-                <label for="creatComment"></label>
+                <input type="text" class="input d-block" id="comment" placeholder="Комментарий...">
+                <label for="comment"></label>
             </figure>
             <figure class="form-creat-button">
-                <button type="button" class="btn btn-success ">Создать</button>
-                <button type="button" class="btn btn-danger m-0">Отмена</button>
+                <button type="button" id="submit-button" class="btn btn-success ">Создать</button>
+                <button type="button" id="cancel-button" class="btn btn-danger m-0">Отмена</button>
             </figure>
         </section>
 </section>
