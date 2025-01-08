@@ -2,7 +2,7 @@
         <h1 class="main-header-title">Доходы и расходы</h1>
         <section class="button-group">
             <button type="button" id="create-income" class="btn btn-success btn-iex" data-bs-dismiss="modal">Создать доход</button>
-            <button type="button" id="create-expense" class="btn btn-danger btn-iex m-0">Создать расход</button>
+            <button type="button" id="create-expense" class="btn btn-danger btn-iex ">Создать расход</button>
         </section>
         <nav class="income-expenses-nav d-flex flex-wrap align-items-center ">
             <ul class="main-menu nav nav-pills">
@@ -43,7 +43,10 @@
                     <th scope="col"></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="operations-tbody">
+                    <!-- Строки с операциями будут добавляться сюда с помощью JavaScript -->
+                </tbody>
+                <!-- <tbody>
                 <tr>
                     <th scope="row">1</th>
                     <td class="text-success">доход</td>
@@ -102,7 +105,7 @@
                         </button>
                     </td>
                 </tr>
-                </tbody>
+                </tbody> -->
             </table>
         </section>
         <section class="modal fade show" id="modal" tabindex="-1" aria-labelledby="exampleModalCenterTitle"

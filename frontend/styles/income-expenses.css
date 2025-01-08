@@ -5,6 +5,44 @@
     margin-right: 10px;
 }
 
+.btn-tr {
+    font-size: 16px;
+    line-height: 19px;
+    width: 100px;
+    padding: 9px 0;
+    border: 1px solid #6C757D;
+    border-radius: 4px;
+    color:  #6C757D;
+    margin-right: 20px;
+    background-color: transparent;
+}
+
+.btn:hover, button.active.btn {
+    background-color: rgba(33, 37, 41, 0.75);
+    color: #FFFFFF;
+}
+
+.header-date {
+    color:  #6C757D;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration: underline;
+    padding-left: 17px;
+    padding-right: 27px;
+}
+
+.header-date.nav-link:hover {
+    color: #467DF2;
+    background-color: transparent;
+}
+
+.header-interval {
+    color: #000000;
+    font-size: 16px;
+    line-height: 19px;
+    padding-right: 0;
+}
+
 .income-expenses-nav {
     margin-top: 40px;
     margin-bottom: 40px;
@@ -53,6 +91,10 @@
     border: transparent;
     background-color: transparent;
 }
+
+
+ 
+
 
 
 

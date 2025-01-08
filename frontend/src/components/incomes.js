@@ -104,11 +104,7 @@ export class Incomes {
             button.addEventListener('click', (event) => {
             const cardBody = button.closest('.card-body');
             const categoryId = cardBody ? cardBody.getAttribute('data-id') : null; //проверка через тернарный оператор
-            // if(!categoryId) {
-            //     console.log('Id is not found');
-            //     return;
-            // }
-                modal.show();
+                 modal.show();
 
                 const btnDelete = document.getElementById("btn-y-delete");
                 btnDelete.onclick = () => {

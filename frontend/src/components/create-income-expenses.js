@@ -14,12 +14,18 @@ export class CreateIncomeExpenses {
 
         this.incomeCategory = [];
         this.expenseCategory = [];
+
+        const typeFromLocalStorage = localStorage.getItem('operationType');
+
+        if (typeFromLocalStorage) {
+            this.typeSelect.value = typeFromLocalStorage;
+            this.loadCategoriesProcess(); 
+        }
         
         this.typeSelect.addEventListener('change', () => this.loadCategoriesProcess());
         this.submitButton.addEventListener('click', (event) => this.submitCreationProcess(event));
         this.cancelButton.addEventListener('click', () => this.cancelCreationProcess());
 
-        this.loadCategoriesProcess();
     }
 
     async loadCategoriesProcess() {
@@ -54,7 +60,7 @@ export class CreateIncomeExpenses {
         event.preventDefault(); 
 
         const type = this.typeSelect.value;
-        const category_id = this.categorySelect.value;
+        const category = this.categorySelect.value;
         const amount = this.amountInput.value.trim();
         const date = this.dateInput.value.trim();
         const comment = this.commentInput.value.trim();
@@ -69,18 +75,15 @@ export class CreateIncomeExpenses {
             amount: parseFloat(amount),
             date,
             comment,
-            category_id
+            category
         };
 
         try {
           
             let result;
-            if (this.operationId) {
-                result = await CustomHttp.request(config.host + `/operations/${category_id}`, "PUT", operationData);
-            } else {
-                result = await CustomHttp.request(config.host + '/operations', "POST", operationData);
-            }
-
+                result = await CustomHttp.request(config.host + `/operations`, "POST", operationData);
+            console.log(result)
+         
             if (result.error) {
                 throw new Error(result.error);
             }

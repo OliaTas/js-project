@@ -115,6 +115,7 @@ export class Router {
                 title: 'Доходы и расходы',
                 template: 'templates/income-expenses.html',
                 styles: 'styles/income-expenses.css',
+               
                 load: () => {
                     new  CheckAccessToken();
                     new IncomeExpenses();

@@ -14,13 +14,11 @@
 }
 
 .btn:hover, button.active.btn {
-    background-color: #6C757D;
+    background-color:  rgba(33, 37, 41, 0.75);
     color: #FFFFFF;
 }
 
-.btn-success {
 
-}
 
 .header-date {
     color:  #6C757D;
