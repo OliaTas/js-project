@@ -15,7 +15,7 @@ export class IncomeExpenses {
 
         this.operations = [];
         this.tableBody = document.getElementById('operations-tbody');
-        
+
         this.createIncomeButton.addEventListener('click', () => this.createIncomeExpenseProcess('income'));
         this.createExpenseButton.addEventListener('click', () => this.createIncomeExpenseProcess('expense'));
         // this.deleteIncomeExpenseBtn.addEventListener('click', () => this.deleteIncomeExpenseProcess());
@@ -34,9 +34,9 @@ export class IncomeExpenses {
                 throw new Error(result.error);
             }
 
-            this.operations = result; 
+            this.operations = result;
             console.log(this.operations)
-            this.showOperationsProcess(); 
+            this.showOperationsProcess();
         } catch (error) {
             console.error(error);
         }
@@ -44,9 +44,9 @@ export class IncomeExpenses {
 
      showOperationsProcess() {
         if(this.operations.length > 0) {
-           
 
-            this.tableBody.innerHTML = ''; 
+
+            // this.tableBody.innerHTML = '';
 
         this.operations.forEach(operation => {
             const tr = document.createElement('tr');
@@ -83,19 +83,19 @@ export class IncomeExpenses {
                     </button>
                 </td>
             `;
-            
-            
+
+
             tr.querySelector('.btn-edit').addEventListener('click', (e) => this.editIncomeExpenseProcess(e));
             tr.querySelector('.btn-delete').addEventListener('click', (e) => this.openDeleteModal(e));
 
             this.tableBody.appendChild(tr);
         });
 
-            
+
         }
 
-        
-        
+
+
 
     }
 
@@ -108,7 +108,7 @@ export class IncomeExpenses {
      openDeleteModal (event) {
         const operationId = event.target.getAttribute('data-id');
         this.modal.style.display = 'flex';
-        this.deleteOperationButton.setAttribute('data-id', operationId); 
+        this.deleteOperationButton.setAttribute('data-id', operationId);
     }
 
     async deleteOperationProcess() {
@@ -119,28 +119,28 @@ export class IncomeExpenses {
         if (result.error) {
             throw new Error(result.error);
         }
-       
+
         const operationCard = document.querySelector(`.operation-card[data-id="${operationId}"]`);
         if (operationCard) {
             operationCard.remove();
         }
-        this.modal.style.display = 'none'; 
+        this.modal.style.display = 'none';
         } catch (error) {
         console.error(error);
         }
     }
-    
+
     cancelDeletionProcess() {
         this.modal.style.display = 'none';
     }
 
-    
+
     editIncomeExpenseProcess (event) {
         const operationId = event.target.getAttribute('data-id');
-    
-        window.location.href = `#/edit-income-expenses/${operationId}`; 
+
+        window.location.href = `#/edit-income-expenses/${operationId}`;
     }
 
-    
+
 }
 

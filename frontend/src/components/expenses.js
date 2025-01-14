@@ -35,6 +35,7 @@ export class Expenses {
             this.expenseCategory.forEach((category) => {
             const newCard = document.createElement('div');
             newCard.classList.add('col');
+            newCard.setAttribute('data-id', category.id);  
             
             const card = document.createElement('div');
             card.classList.add('card');
@@ -105,10 +106,7 @@ export class Expenses {
             button.addEventListener('click', (event) => {
             const cardBody = button.closest('.card-body');
             const categoryId = cardBody ? cardBody.getAttribute('data-id') : null; //проверка через тернарный оператор
-            // if(!categoryId) {
-            //     console.log('Id is not found');
-            //     return;
-            // }
+         
                 modal.show();
 
                 const btnDelete = document.getElementById("btn-y-delete");
@@ -132,6 +130,8 @@ export class Expenses {
                 if (result.error) {
                     throw new Error(result.error);
                 }
+
+                this.espenseCategory = this.expenseCategory.filter(category => category.id !== categoryId);
                 
                 const cardToRemove = document.querySelector(`.col[data-id="${categoryId}"]`);
                     if (cardToRemove) {

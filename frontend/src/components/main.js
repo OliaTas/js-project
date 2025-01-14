@@ -1,33 +1,46 @@
-// import Chart from '../utils/chart.js';
-//
-//
-// new Chart(document.getElementById("pie-chart"), {
-//
-// });
-//
-// const data = {
-//     labels: [
-//         'Red',
-//         'Orange',
-//         'Yellow',
-//         'Green',
-//         'Blue',
-//
-//     ],
-//     datasets: [{
-//         label: 'My First Dataset',
-//         data: [300, 50, 100],
-//         backgroundColor: [
-//             'rgb(220, 53, 69)',
-//             'rgb(253, 126, 20)',
-//             'rgb(255, 193, 7)',
-//             'rgb(32, 201, 151)',
-//             'rgb(13, 110, 253)'
-//         ],
-//         hoverOffset: 4
-//     }]
-// };
-
 export class Main {
+    constructor() {
+
+
+
+
+        // this.createIncomeChart();
+    }
+
+    // createIncomeChart() {
+    //     var incomeCanvas = document.getElementById("incomeChart");
+
+    //     Chart.defaults.global.defaultFontFamily = "Lato";
+    //     Chart.defaults.global.defaultFontSize = 18;
+
+    //     var incomeData = {
+    //         labels: [
+    //             "Saudi Arabia",
+    //             "Russia",
+    //             "Iraq",
+    //             "United Arab Emirates",
+    //             "Canada"
+    //         ],
+    //         datasets: [
+    //             {
+    //                 data: [133.3, 86.2, 52.2, 51.2, 50.2],
+    //                 backgroundColor: [
+    //                     "#FF6384",
+    //                     "#63FF84",
+    //                     "#84FF63",
+    //                     "#8463FF",
+    //                     "#6384FF"
+    //                 ]
+    //             }]
+    //     };
+
+    //     var pieChart = new Chart(incomeCanvas, {
+    //         type: 'pie',
+    //         data: incomeData
+    //     });
+    // }
+
 
 }
+
+

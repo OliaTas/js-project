@@ -44,10 +44,10 @@ export class Router {
                 title: 'Главная',
                 template: 'templates/main.html',
                 styles: 'styles/main.css',
-                script: 'src/utils/bootstrap.min.js',
+                script: 'src="https://cdn.jsdelivr.net/npm/chart.js"',
                 load: () => {
                     new  CheckAccessToken();
-                    new Main ();
+                    new Main();
                 }
             },
             {
