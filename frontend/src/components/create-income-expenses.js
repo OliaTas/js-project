@@ -14,6 +14,7 @@ export class CreateIncomeExpenses {
 
         this.incomeCategory = [];
         this.expenseCategory = [];
+        this.categories = [];
 
         const typeFromLocalStorage = localStorage.getItem('operationType');
 
@@ -58,9 +59,10 @@ export class CreateIncomeExpenses {
 
     async submitCreationProcess(event) {
         event.preventDefault(); 
+       
 
         const type = this.typeSelect.value;
-        const category = this.categorySelect.value;
+        const category_id =  this.categories.find(item => item.title === this.categorySelect.value)?.id;;
         const amount = this.amountInput.value.trim();
         const date = this.dateInput.value.trim();
         const comment = this.commentInput.value.trim();
@@ -75,8 +77,9 @@ export class CreateIncomeExpenses {
             amount: parseFloat(amount),
             date,
             comment,
-            category
+            category: category_id
         };
+        console.log(operationData)
 
         try {
           
