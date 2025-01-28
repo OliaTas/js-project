@@ -1,29 +1,65 @@
-import {CustomHttp} from "../services/custom-http.js";
+import { CustomHttp } from "../services/custom-http.js";
 import config from "../../config/config.js";
 
 export class IncomeExpenses {
     constructor() {
-        this.deleteIncomeExpenseBtn = document.getElementsByClassName('delete-in-ex-btn');
-        this.editIncomeExpenseBtn = document.getElementsByClassName('edit-in-ex-btn');
         this.modal = document.getElementById('modal');
-        this.createIncomeButton = document.getElementById('create-income');
-        this.createExpenseButton = document.getElementById('create-expense');
-        // this.deleteButton = document.getElementById('delete-button');
-        // this.editButton = document.getElementById('edit-button');
-        this.deleteOperationButton = document.getElementById('delete');
-        this.cancelOperationButton = document.getElementById('cancel');
-
         this.operations = [];
-        this.tableBody = document.getElementById('operations-tbody');
 
-        this.createIncomeButton.addEventListener('click', () => this.createIncomeExpenseProcess('income'));
-        this.createExpenseButton.addEventListener('click', () => this.createIncomeExpenseProcess('expense'));
-        // this.deleteIncomeExpenseBtn.addEventListener('click', () => this.deleteIncomeExpenseProcess());
-        this.deleteOperationButton.addEventListener('click', () => this.deleteOperationProcess());
-        this.cancelOperationButton.addEventListener('click', () => this.cancelDeletionProcess());
+        this.dateFilters = {
+            today: document.getElementById('today'),
+            week: document.getElementById('week'),
+            month: document.getElementById('month'),
+            year: document.getElementById('year'),
+            all: document.getElementById('all'),
+            interval: document.getElementById('interval')
+        };
 
+        this.dateInputs = {
+            from: document.getElementById('dateFrom'),
+            to: document.getElementById('dateTo')
+        };
+
+        this.currentFilter = 'today'; // Хранит активный фильтр
+
+        this.bindEventListeners();
         this.loadOperations();
 
+        const createIncomeButton = document.getElementById('create-income');
+        const createExpenseButton = document.getElementById('create-expense');
+        createIncomeButton.addEventListener('click', () => this.createIncomeExpenseProcess('income'));
+        createExpenseButton.addEventListener('click', () => this.createIncomeExpenseProcess('expense'));
+    }
+
+    bindEventListeners() {
+        // Добавляем обработчики событий для кнопок фильтров
+        Object.keys(this.dateFilters).forEach(filterKey => {
+            this.dateFilters[filterKey].addEventListener('click', () => {
+                this.setActiveFilter(filterKey);
+                this.currentFilter = filterKey;
+                this.applyFilter();
+            });
+        });
+
+        // Обновляем фильтр при изменении диапазона дат
+        [this.dateInputs.from, this.dateInputs.to].forEach(input => {
+            input.addEventListener('change', () => {
+                if (this.currentFilter === 'interval') {
+                    this.applyFilter();
+                }
+            });
+        });
+    }
+
+    setActiveFilter(filterKey) {
+        Object.values(this.dateFilters).forEach(button => button.classList.remove('active'));
+        this.dateFilters[filterKey].classList.add('active');
+
+        // Показываем или скрываем поля ввода дат
+        const isInterval = filterKey === 'interval';
+        [this.dateInputs.from, this.dateInputs.to].forEach(input => {
+            input.classList.toggle('d-none', !isInterval);
+        });
     }
 
     async loadOperations() {
@@ -36,31 +72,111 @@ export class IncomeExpenses {
 
             this.operations = result;
             console.log(this.operations)
-            this.showOperationsProcess();
+
+
+            this.applyFilter(); // Применяем фильтрацию при загрузке
         } catch (error) {
             console.error(error);
         }
     }
 
-     showOperationsProcess() {
+    applyFilter() {
+        let filteredOperations = [];
+        const today = new Date();
 
-        if(this.operations.length === 0) {
-            this.tableBody.innerHTML = '<tr><td colspan-"6>Нет операций для отображения</td></tr>';
+        switch (this.currentFilter) {
+            case 'today':
+                filteredOperations = this.operations.filter(op => this.isToday(op.date));
+                break;
+            case 'week':
+                filteredOperations = this.operations.filter(op => this.isThisWeek(op.date));
+                break;
+            case 'month':
+                filteredOperations = this.operations.filter(op => this.isThisMonth(op.date));
+                break;
+            case 'year':
+                filteredOperations = this.operations.filter(op => this.isThisYear(op.date));
+                break;
+            case 'all':
+                filteredOperations = [...this.operations];
+                break;
+            case 'interval':
+                const fromDate = this.dateInputs.from.value ? new Date(this.dateInputs.from.value) : null;
+                const toDate = this.dateInputs.to.value ? new Date(this.dateInputs.to.value) : null;
+
+                if (fromDate && toDate) {
+                    filteredOperations = this.operations.filter(op => {
+                        const opDate = new Date(op.date);
+                        return opDate >= fromDate && opDate <= toDate;
+                    });
+                } else {
+                    console.error('Не указан корректный диапазон дат.');
+                }
+                break;
+        }
+
+        this.showOperationsProcess(filteredOperations);
+    }
+
+    isToday(date) {
+        const today = new Date();
+        const opDate = new Date(date);
+
+        return (
+            opDate.getDate() === today.getDate() &&
+            opDate.getMonth() === today.getMonth() &&
+            opDate.getFullYear() === today.getFullYear()
+        );
+    }
+
+    isThisWeek(date) {
+        const today = new Date();
+        const opDate = new Date(date);
+
+        const startOfWeek = new Date(today);
+        startOfWeek.setDate(today.getDate() - today.getDay());
+        startOfWeek.setHours(0, 0, 0, 0);
+
+        const endOfWeek = new Date(startOfWeek);
+        endOfWeek.setDate(startOfWeek.getDate() + 6);
+        endOfWeek.setHours(23, 59, 59, 999);
+
+        return opDate >= startOfWeek && opDate <= endOfWeek;
+    }
+
+    isThisMonth(date) {
+        const today = new Date();
+        const opDate = new Date(date);
+
+        return (
+            opDate.getMonth() === today.getMonth() &&
+            opDate.getFullYear() === today.getFullYear()
+        );
+    }
+
+    isThisYear(date) {
+        const today = new Date();
+        const opDate = new Date(date);
+
+        return opDate.getFullYear() === today.getFullYear();
+    }
+
+    showOperationsProcess(filteredOperations) {
+        const tableBody = document.getElementById('operations-tbody');
+        tableBody.innerHTML = '';
+
+        if (filteredOperations.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="6">Нет операций для отображения</td></tr>';
             return;
         }
 
-        if(this.operations.length > 0) {
 
-
-            this.tableBody.innerHTML = '';
-            let rowNumber = 1;
-
-        this.operations.forEach(operation => {
+        filteredOperations.forEach((operation, index) => {
             const tr = document.createElement('tr');
             tr.dataset.id = operation.id;
 
             tr.innerHTML = `
-                <th scope="row">${rowNumber}</th>
+                <th scope="row">${index + 1}</th>
                 <td class="${operation.type === 'доход' ? 'text-success' : 'text-danger'}">${operation.type}</td>
                 <td>${operation.category}</td>
                 <td>${operation.amount}</td>
@@ -88,66 +204,77 @@ export class IncomeExpenses {
                             </svg>
                        
                     </button>
+                
                 </td>
             `;
-
-
             tr.querySelector('.btn-edit').addEventListener('click', (e) => this.editIncomeExpenseProcess(e));
             tr.querySelector('.btn-delete').addEventListener('click', (e) => this.openDeleteModal(e));
 
-            this.tableBody.appendChild(tr);
-            rowNumber++;
+            tableBody.appendChild(tr);
         });
 
+    }
+
+    editIncomeExpenseProcess(event) {
+        const dataId = parseInt(event.currentTarget.getAttribute('data-id'));
+        console.log(dataId);
+
+        location.href = `#/edit-income-expenses?id=${dataId}`;
+    }
+
+    openDeleteModal(event) {
+        const operationId = event.currentTarget.getAttribute('data-id');
+        if (!operationId) {
+            console.error('Operation ID is missing.');
+            return;
         }
-    }
-    
 
-    editIncomeExpenseProcess () {
-        // const operationId = event.target.getAttribute('data-id');
-        window.location.href = `#/edit-income-expenses`;
-    }
+        const deleteOperationButton = document.getElementById('delete');
+        deleteOperationButton.setAttribute('data-id', operationId);
+        deleteOperationButton.addEventListener('click', () => this.deleteOperationProcess());
 
-    openDeleteModal (event) {
-        const operationId = event.target.getAttribute('data-id');
         this.modal.style.display = 'flex';
-        this.deleteOperationButton.setAttribute('data-id', operationId);
+
+        const cancelOperationButton = document.getElementById('cancel');
+        cancelOperationButton.addEventListener('click', () => this.cancelDeletionProcess());
     }
 
     createIncomeExpenseProcess(type) {
         localStorage.setItem('operationType', type);
         window.location.href = '#/create-income-expenses';
-     }
-
-
-    
+    }
 
     async deleteOperationProcess() {
-        const operationId = this.deleteOperationButton.getAttribute('data-id');
         try {
-        const result = await CustomHttp.request(config.host + `/operations/${operationId}`, "DELETE");
+            const deleteOperationButton = this.modal.querySelector('#delete');
+            if (!deleteOperationButton) {
+                throw new Error('Delete button not found.');
+            }
 
-        if (result.error) {
-            throw new Error(result.error);
-        }
+            const operationId = deleteOperationButton.getAttribute('data-id');
+            if (!operationId) {
+                throw new Error('Operation ID is missing.');
+            }
 
-        const operationCard = document.querySelector(`.operation-card[data-id="${operationId}"]`);
-        if (operationCard) {
-            operationCard.remove();
-        }
-        this.modal.style.display = 'none';
+            const result = await CustomHttp.request(`${config.host}/operations/${operationId}`, "DELETE");
+
+            if (result.error) {
+                throw new Error(result.error);
+            }
+            const operationRow = document.querySelector(`tr[data-id="${operationId}"]`); // Удаление строки из таблицы
+            if (operationRow) {
+                operationRow.remove();
+            }
         } catch (error) {
-        console.error(error);
+            console.error(error);
+        } finally {
+            this.modal.style.display = 'none';
         }
     }
 
     cancelDeletionProcess() {
         this.modal.style.display = 'none';
+
     }
-
-
-    
-
-
 }
 

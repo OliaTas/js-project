@@ -5,68 +5,68 @@ export class Main {
 
 
         // this.createIncomeChart();
-        this.chart();
+        // this.chart();
     }
 
-    chart() {
-
-    // Data for the income chart
-    const incomeData = {
-        labels: ['Salary', 'Freelance', 'Investments', 'Other'],
-        datasets: [{
-            label: 'Income Distribution',
-            data: [5000, 2000, 1500, 800], // Replace these values with actual data
-            backgroundColor: ['#FF5733', '#FFC300', '#DAF7A6', '#900C3F'], // Example colors
-            hoverOffset: 4
-        }]
-    };
-
-    // Data for the expenses chart
-    const expensesData = {
-        labels: ['Rent', 'Food', 'Entertainment', 'Utilities'],
-        datasets: [{
-            label: 'Expenses Distribution',
-            data: [1200, 800, 500, 300], // Replace these values with actual data
-            backgroundColor: ['#4A90E2', '#50E3C2', '#F5A623', '#D0021B'], // Example colors
-            hoverOffset: 4
-        }]
-    };
-
-    // Configurations for both charts
-    const config = {
-        type: 'pie',
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return tooltipItem.label + ': ' + tooltipItem.raw + ' units';
-                        }
-                    }
-                }
-            }
-        }
-    };
-
-    // // Render the Income Chart
-    // const incomeChart = new Chart(document.getElementById('myPieChart'), {
-    //     ...config,
-    //     data: incomeData
-    // });
-
-    // // Render the Expenses Chart
-    // const expensesChart = new Chart(document.getElementById('expensesChart'), {
-    //     ...config,
-    //     data: expensesData
-    // });
-
-
-    
-    }
+    // chart() {
+    //
+    // // Data for the income chart
+    // const incomeData = {
+    //     labels: ['Salary', 'Freelance', 'Investments', 'Other'],
+    //     datasets: [{
+    //         label: 'Income Distribution',
+    //         data: [5000, 2000, 1500, 800], // Replace these values with actual data
+    //         backgroundColor: ['#FF5733', '#FFC300', '#DAF7A6', '#900C3F'], // Example colors
+    //         hoverOffset: 4
+    //     }]
+    // };
+    //
+    // // Data for the expenses chart
+    // const expensesData = {
+    //     labels: ['Rent', 'Food', 'Entertainment', 'Utilities'],
+    //     datasets: [{
+    //         label: 'Expenses Distribution',
+    //         data: [1200, 800, 500, 300], // Replace these values with actual data
+    //         backgroundColor: ['#4A90E2', '#50E3C2', '#F5A623', '#D0021B'], // Example colors
+    //         hoverOffset: 4
+    //     }]
+    // };
+    //
+    // // Configurations for both charts
+    // const config = {
+    //     type: 'pie',
+    //     options: {
+    //         responsive: true,
+    //         plugins: {
+    //             legend: {
+    //                 position: 'top',
+    //             },
+    //             tooltip: {
+    //                 callbacks: {
+    //                     label: function(tooltipItem) {
+    //                         return tooltipItem.label + ': ' + tooltipItem.raw + ' units';
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // };
+    //
+    // // // Render the Income Chart
+    // // const incomeChart = new Chart(document.getElementById('myPieChart'), {
+    // //     ...config,
+    // //     data: incomeData
+    // // });
+    //
+    // // // Render the Expenses Chart
+    // // const expensesChart = new Chart(document.getElementById('expensesChart'), {
+    // //     ...config,
+    // //     data: expensesData
+    // // });
+    //
+    //
+    //
+    // }
     // createIncomeChart() {
     //     var incomeCanvas = document.getElementById("incomeChart");
 

@@ -7,27 +7,35 @@
         <nav class="income-expenses-nav d-flex flex-wrap align-items-center ">
             <ul class="main-menu nav nav-pills">
                 <li class="nav-item">
-                    <button class="active btn btn-tr">Сегодня</button>
+                    <button class="active btn btn-tr" id="today">Сегодня</button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-tr">Неделя</button>
+                    <button class="btn btn-tr" id="week">Неделя</button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-tr">Месяц</button>
+                    <button class="btn btn-tr" id="month">Месяц</button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-tr">Год</button>
+                    <button class="btn btn-tr" id="year">Год</button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-tr">Все</button>
+                    <button class="btn btn-tr" id="all">Все</button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-tr">Интервал</button>
+                    <button type="button" class="btn btn-tr" id="interval">Интервал</button>
                 </li>
-                <li class="nav-item nav-link header-interval">c</li>
-                <li class="nav-item"><a href="#" class="header-date nav-link">Дата</a></li>
-                <li class="nav-item nav-link header-interval">по</li>
-                <li class="nav-item"><a href="#" class="header-date nav-link">Дата</a></li>
+                <span class="d-flex">
+                    <li class="nav-item nav-link header-interval">c</li>
+                    <li class="nav-item"><a href="#" class="header-date nav-link">Дата</a></li>
+                    <input type="date" class="border-0 d-none date-input" id="dateFrom">
+                </span>
+                <span class="d-flex">
+                    <li class="nav-item nav-link header-interval">по</li>
+                    <li class="nav-item"><a href="#" class="header-date nav-link">Дата</a></li>
+                    <input type="date" class="border-0 d-none date-input" id="dateTo">
+                </span>
+               
+               
             </ul>
         </nav>
         <section class="table-responsive">

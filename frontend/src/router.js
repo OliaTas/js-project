@@ -11,6 +11,7 @@ import {EditExpenses} from "./components/edit-expenses.js";
 import {IncomeExpenses} from "./components/income-expenses.js";
 import { CreateIncomeExpenses } from "./components/create-income-expenses.js";
 import { EditIncomeExpenses } from "./components/edit-income-expenses.js";
+import {Sidebar} from "./components/sidebar.js"
 
 export class Router {
     constructor() {
@@ -170,7 +171,8 @@ export class Router {
         const userInfo = Auth.getUserInfo();
         const accessToken = localStorage.getItem(Auth.accessTokenKey);
         if (userInfo && accessToken) {
-            this.profileFullNameElement.innerText = userInfo.lastName;
+                this.profileFullNameElement.innerText = userInfo.name ;
+                new Sidebar();
             // this.sideBar.style.display = "flex";
         }
 
