@@ -1,106 +1,100 @@
+// import { CustomHttp } from "../services/custom-http.js";
+// import config from "../../config/config.js";
+// import {Chart} from "chart.js/auto";
+// export class Main {
+//     constructor() {
+   
+//     }
+
+
+// }
+
+import { Chart } from "chart.js/auto";
+import { IncomeExpenses } from "./income-expenses.js"; // Подключаем класс IncomeExpenses
+import config from "../../config/config.js";
+
 export class Main {
-    constructor() {
+    // constructor() {
+    //     this.incomeExpenses = new IncomeExpenses();
+    //     this.incomeData = { labels: [], datasets: [{ data: [], backgroundColor: [] }] };
+    //     this.expensesData = { labels: [], datasets: [{ data: [], backgroundColor: [] }] };
 
+    //     this.initializeCharts();
+    // }
 
+    // async initializeCharts() {
+    //     // Ждем загрузки операций
+    //     await this.incomeExpenses.loadOperations();
 
+    //     // Получаем динамические данные для доходов и расходов
+    //     const incomeOperations = this.incomeExpenses.operations.filter(op => op.type === "доход");
+    //     const expenseOperations = this.incomeExpenses.operations.filter(op => op.type === "расход");
 
-        // this.createIncomeChart();
-        // this.chart();
-    }
+    //     // Формируем данные для доходов
+    //     this.incomeData.labels = incomeOperations.map(op => op.category);  // Получаем категории
+    //     // console.log(this.incomeData.labels)
+    //     this.incomeData.datasets[0].data = incomeOperations.map(op => op.amount);  // Получаем суммы
+    //     // console.log(this.incomeData.datasets[0].data)
 
-    // chart() {
-    //
-    // // Data for the income chart
-    // const incomeData = {
-    //     labels: ['Salary', 'Freelance', 'Investments', 'Other'],
-    //     datasets: [{
-    //         label: 'Income Distribution',
-    //         data: [5000, 2000, 1500, 800], // Replace these values with actual data
-    //         backgroundColor: ['#FF5733', '#FFC300', '#DAF7A6', '#900C3F'], // Example colors
-    //         hoverOffset: 4
-    //     }]
-    // };
-    //
-    // // Data for the expenses chart
-    // const expensesData = {
-    //     labels: ['Rent', 'Food', 'Entertainment', 'Utilities'],
-    //     datasets: [{
-    //         label: 'Expenses Distribution',
-    //         data: [1200, 800, 500, 300], // Replace these values with actual data
-    //         backgroundColor: ['#4A90E2', '#50E3C2', '#F5A623', '#D0021B'], // Example colors
-    //         hoverOffset: 4
-    //     }]
-    // };
-    //
-    // // Configurations for both charts
-    // const config = {
-    //     type: 'pie',
-    //     options: {
-    //         responsive: true,
-    //         plugins: {
-    //             legend: {
-    //                 position: 'top',
-    //             },
-    //             tooltip: {
-    //                 callbacks: {
-    //                     label: function(tooltipItem) {
-    //                         return tooltipItem.label + ': ' + tooltipItem.raw + ' units';
+    //     this.incomeData.datasets[0].backgroundColor = ['red', 'orange', 'yellow', 'green', 'blue'];  // Пример цветов для каждого сегмента
+
+    //     // Формируем данные для расходов
+    //     this.expensesData.labels = expenseOperations.map(op => op.category);  // Получаем категории
+    //     this.expensesData.datasets[0].data = expenseOperations.map(op => op.amount);  // Получаем суммы
+    //     this.expensesData.datasets[0].backgroundColor = ['red', 'orange', 'yellow', 'green', 'blue'];  // Пример цветов для каждого сегмента
+
+    //     // Создание графиков
+    //     this.createIncomeChart();
+    //     this.createExpensesChart();
+    // }
+
+    // createIncomeChart() {
+    //     const incomeCtx = document.getElementById('incomeChart').getContext('2d');
+    //     incomeCtx.canvas.width = 360; // Установка ширины канваса
+    //     incomeCtx.canvas.height = 360; // Установка высоты канваса
+    //     new Chart(incomeCtx, {
+    //         type: 'pie',
+    //         data: this.incomeData,
+    //         options: {
+    //             responsive: true,
+    //             plugins: {
+    //                 legend: {
+    //                     position: 'top',
+    //                 },
+    //                 tooltip: {
+    //                     callbacks: {
+    //                         label: function(tooltipItem) {
+    //                             return `${tooltipItem.label}: ${tooltipItem.raw}`;
+    //                         }
     //                     }
     //                 }
     //             }
     //         }
-    //     }
-    // };
-    //
-    // // // Render the Income Chart
-    // // const incomeChart = new Chart(document.getElementById('myPieChart'), {
-    // //     ...config,
-    // //     data: incomeData
-    // // });
-    //
-    // // // Render the Expenses Chart
-    // // const expensesChart = new Chart(document.getElementById('expensesChart'), {
-    // //     ...config,
-    // //     data: expensesData
-    // // });
-    //
-    //
-    //
-    // }
-    // createIncomeChart() {
-    //     var incomeCanvas = document.getElementById("incomeChart");
-
-    //     Chart.defaults.global.defaultFontFamily = "Lato";
-    //     Chart.defaults.global.defaultFontSize = 18;
-
-    //     var incomeData = {
-    //         labels: [
-    //             "Saudi Arabia",
-    //             "Russia",
-    //             "Iraq",
-    //             "United Arab Emirates",
-    //             "Canada"
-    //         ],
-    //         datasets: [
-    //             {
-    //                 data: [133.3, 86.2, 52.2, 51.2, 50.2],
-    //                 backgroundColor: [
-    //                     "#FF6384",
-    //                     "#63FF84",
-    //                     "#84FF63",
-    //                     "#8463FF",
-    //                     "#6384FF"
-    //                 ]
-    //             }]
-    //     };
-
-    //     var pieChart = new Chart(incomeCanvas, {
-    //         type: 'pie',
-    //         data: incomeData
     //     });
     // }
 
-
+    createExpensesChart() {
+        const expensesCtx = document.getElementById('expensesChart').getContext('2d');
+        expensesCtx.canvas.width = 360; // Установка ширины канваса
+        expensesCtx.canvas.height = 360; // Установка высоты канваса
+        new Chart(expensesCtx, {
+            type: 'pie', // Для расходов тоже можно использовать круговой график
+            data: this.expensesData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return `${tooltipItem.label}: ${tooltipItem.raw}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
 }
-
-

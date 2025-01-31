@@ -72,9 +72,9 @@ a {
     font-size: 13px;
 }
 
-.nav-link  svg{
+/* .nav-link svg{
     fill: #052C65;
-}
+} */
 
 .nav-item.active,
 .nav-item a:hover {
@@ -87,9 +87,11 @@ a {
      /*border-radius: 0;*/
 }
 
+
+
 .active:hover {
     background: transparent;
-    color: #467DF2;
+    /* color: #467DF2; */
 }
 
 .collapse ul {
