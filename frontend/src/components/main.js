@@ -8,12 +8,67 @@ export class Main {
         this.incomeData = { labels: [], datasets: [{ data: [], backgroundColor: [] }] };
         this.expensesData = { labels: [], datasets: [{ data: [], backgroundColor: [] }] };
 
-        this.loadCharts();
+        this.init();
     }
 
-    async loadCharts() {
+    async init() {
+        this.selectInterval();
+    }
+
+    selectInterval() {
+        this.period = 'today';
+        this.loadOperations(this.period);
+        this.intervalButtons = document.querySelectorAll('.btn-tr');
+        this.intervalButtons.forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('dateFrom').classList.add('d-none');
+        document.getElementById('dateTo').classList.add('d-none');
+                const intervalType = item.getAttribute('id');
+                this.intervalButtons.forEach(btn => btn.classList.remove('active'));
+                item.classList.add('active');
+                switch (intervalType) {
+                    case 'today':
+                        this.loadOperations('today');
+                        break;
+                    case 'week':
+                        this.loadOperations('week');
+                        break;
+                    case 'month':
+                        this.loadOperations('month');
+                        break;
+                    case 'year':
+                        this.loadOperations('year');
+                        break;
+                    case 'all':
+                        this.loadOperations('all');
+                        break;
+                    case 'interval':
+                        this.loadOperations('interval');
+                        const dateFrom = document.getElementById('dateFrom');
+                        const dateTo = document.getElementById('dateTo');
+
+                        dateTo.classList.add('m-3');
+                        dateFrom.classList.remove('d-none');
+                        dateTo.classList.remove('d-none');
+                        dateFrom.addEventListener('change', () => this.loadOperations('interval', dateTo.value, dateFrom.value));
+                        dateTo.addEventListener('change', () => this.loadOperations('interval', dateTo.value, dateFrom.value));
+                        this.loadOperations('interval', dateFrom.value, dateTo.value);
+                        break;
+                };
+            });
+        });
+    }
+
+    async loadOperations(period, dateTo, dateFrom) {
+        let params = '';
+        if (period) {
+            params = '?period=' + period
+        }
+        if (period === 'interval' && dateFrom && dateTo) {
+            params = `?period=interval&dateFrom=${dateFrom}&dateTo=${dateTo}`;
+        }
         try {
-            const result = await CustomHttp.request(config.host + `/operations`, "GET");
+            const result = await CustomHttp.request(config.host + `/operations` + params);
 
             if (result.error) {
                 throw new Error(result.error);
@@ -53,9 +108,14 @@ export class Main {
 
     createIncomeChart() {
         const incomeCtx = document.getElementById('incomeChart').getContext('2d');
-        incomeCtx.canvas.width = 360;
-        incomeCtx.canvas.height = 360;
-        new Chart(incomeCtx, {
+        incomeCtx.canvas.width = 100;
+        incomeCtx.canvas.height = 100;
+
+        if (this.incomeChart) {
+            this.incomeChart.destroy();
+        }
+
+         this.incomeChart = new Chart(incomeCtx, {
             type: 'pie',
             data: this.incomeData,
             options: {
@@ -75,8 +135,13 @@ export class Main {
     createExpensesChart() {
         const expensesCtx = document.getElementById('expensesChart').getContext('2d');
         expensesCtx.canvas.width = 360; 
-        expensesCtx.canvas.height = 360; 
-        new Chart(expensesCtx, {
+        expensesCtx.canvas.height = 360;
+        
+        if (this.expensesChart) {
+            this.expensesChart.destroy();
+        }
+    
+        this.expensesChart = new Chart(expensesCtx, {
             type: 'pie',
             data: this.expensesData,
             options: {

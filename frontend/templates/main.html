@@ -1,64 +1,50 @@
 <section id="content">
-        <h1 class="main-header-title">Главная</h1>
-        <nav class="income-expenses-nav d-flex flex-wrap align-items-center ">
-            <ul class="main-menu nav nav-pills">
-                <li class="nav-item">
-                    <button class="active btn btn-tr">Сегодня</button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-tr">Неделя</button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-tr">Месяц</button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-tr">Год</button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-tr">Все</button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-tr">Интервал</button>
-                </li>
-                <li class="nav-item nav-link header-interval">c</li>
-                <li class="nav-item"><a href="#" class="header-date nav-link">Дата</a></li>
-                <li class="nav-item nav-link header-interval">по</li>
-                <li class="nav-item"><a href="#" class="header-date nav-link">Дата</a></li>
-            </ul>
-        </nav>
-        <section class="account">
-            <figure class="account-income">
-                <h2 class="account-income-header ">Доходы</h2>
-                <section class="account-income-border">
-                    <!-- <section class="account-colors">
-                        <p class="account-color red"></p> <span>Red</span>
-                        <p class="account-color orange"></p> <span>Orange</span>
-                        <p class="account-color yellow"></p> <span>Yellow</span>
-                        <p class="account-color green"></p> <span>Green</span>
-                        <p class="account-color blue"></p> <span>Blue</span>
-                    </section>
-                    <img src="/images/income.png" alt="Income" class="account-income-img"> -->
-                     <canvas id="incomeChart" class="account-income-img" style="width: 360px; height: 360px;"></canvas>
-                </section>
-            </figure>
-            <figure class="account-expenses">
-                <h2 class="account-income-header">Расходы</h2>
-                <!-- <section class="account-colors">
-                    <p class="account-color red"></p> <span>Red</span>
-                    <p class="account-color orange"></p> <span>Orange</span>
-                    <p class="account-color yellow"></p> <span>Yellow</span>
-                    <p class="account-color green"></p> <span>Green</span>
-                    <p class="account-color blue"></p> <span>Blue</span>
-                </section>
-                <img src="/images/expenses.png" alt="Expenses" class="account-income-img"> -->
-                <canvas id="expensesChart" class="account-income-img" style="width: 360px; height: 360px;"></canvas>
-            </figure>
-            
-        </section>
+    <h1 class="main-header-title">Главная</h1>
+    <nav class="income-expenses-nav d-flex flex-wrap align-items-center ">
+        <ul class="main-menu nav nav-pills">
+            <li class="nav-item">
+                <button class="active btn btn-tr" id="today">Сегодня</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-tr" id="week">Неделя</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-tr" id="month">Месяц</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-tr" id="year">Год</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-tr" id="all">Все</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-tr" id="interval">Интервал</button>
+            </li>
+            <span class="d-flex align-items-center">
+                <li class="header-interval">c</li>
+                <span class="header-date">Дата</span>
+                <input type="date" class="border-0 d-none  date-input" id="dateFrom">
+            </span>
+            <span class="d-flex align-items-center">
+                <li class="header-interval">по</li>
+                <span class="header-date">Дата</span>
+                <input type="date" class="border-0 d-none date-input" id="dateTo">
+            </span>
+           
+           
+        </ul>
+    </nav>
+    <section class="account">
+        <figure class="account-income">
+            <h2 class="account-income-header ">Доходы</h2>
+            <section class="account-income-border">
+                <canvas id="incomeChart" class="account-income-img" style="width: 360px; height: 360px;"></canvas>
+            </section>
+        </figure>
+        <figure class="account-expenses">
+            <h2 class="account-income-header">Расходы</h2>
+            <canvas id="expensesChart" class="account-income-img" style="width: 360px; height: 360px;"></canvas>
+        </figure>
+
+    </section>
 </section>
-
-
-
-
-
-

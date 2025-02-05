@@ -171,7 +171,7 @@ export class Router {
         const userInfo = Auth.getUserInfo();
         const accessToken = localStorage.getItem(Auth.accessTokenKey);
         if (userInfo && accessToken) {
-                this.profileFullNameElement.innerText = userInfo.name ;
+                this.profileFullNameElement.innerText = userInfo.lastName ;
                 new Sidebar();
             // this.sideBar.style.display = "flex";
         }

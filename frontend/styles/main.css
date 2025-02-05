@@ -57,7 +57,6 @@
 }
 
 .account-income-header, .account-expenses-header {
-    width: 437px;
     text-align: center;
     font-size: 28px;
     line-height: 32px;
@@ -82,7 +81,7 @@
     border: 1px solid transparent;
 }
 
-.red {
+/* .red {
     background-color:  #DC3545;
 }
 .orange {
@@ -95,7 +94,7 @@
     background-color: #20C997;
 }
 .blue {
-    background-color: #0D6EFD;
-}
+    background-color: #0D6EFD; */
+/* } */
 
 
